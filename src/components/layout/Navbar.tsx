@@ -4,15 +4,12 @@ import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
-
-  if (pathname.startsWith('/admin') || pathname.startsWith('/login')) {
-    return null;
-  }
 
   useEffect(() => {
     const handleScroll = () => {
@@ -21,6 +18,10 @@ export default function Navbar() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  if (pathname.startsWith('/admin') || pathname.startsWith('/login')) {
+    return null;
+  }
 
   const navLinks = [
     { name: "الرئيسية", href: "/" },
@@ -68,23 +69,32 @@ export default function Navbar() {
       </div>
 
       {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden absolute top-full left-0 right-0 bg-white shadow-xl border-t border-gray-100 p-4 flex flex-col gap-4">
-          {navLinks.map((link, idx) => (
-            <Link 
-              key={idx} 
-              href={link.href} 
-              onClick={() => setIsMobileMenuOpen(false)} 
-              className={`block font-medium text-lg ${pathname === link.href ? "text-smaa-red-600 font-bold" : "text-smaa-blue-900 hover:text-smaa-red-500"}`}
-            >
-              {link.name}
-            </Link>
-          ))}
-          <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)} className="bg-smaa-red-600 hover:bg-smaa-red-500 text-white px-6 py-3 rounded-full font-bold transition-all text-center mt-2">
-            اطلب سيارتك
-          </Link>
-        </div>
-      )}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div 
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            className="md:hidden absolute top-full left-0 right-0 bg-white shadow-xl border-t border-gray-100 flex flex-col gap-4 overflow-hidden"
+          >
+            <div className="p-4 flex flex-col gap-4">
+              {navLinks.map((link, idx) => (
+                <Link 
+                  key={idx} 
+                  href={link.href} 
+                  onClick={() => setIsMobileMenuOpen(false)} 
+                  className={`block font-medium text-lg ${pathname === link.href ? "text-smaa-red-600 font-bold" : "text-smaa-blue-900 hover:text-smaa-red-500"}`}
+                >
+                  {link.name}
+                </Link>
+              ))}
+              <Link href="/contact" onClick={() => setIsMobileMenuOpen(false)} className="bg-smaa-red-600 hover:bg-smaa-red-500 text-white px-6 py-3 rounded-full font-bold transition-all text-center mt-2 active:scale-95">
+                اطلب سيارتك
+              </Link>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }

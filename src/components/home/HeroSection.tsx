@@ -32,19 +32,19 @@ export default function HeroSection() {
               <div className="flex flex-wrap gap-4 mt-8">
                 <Link 
                   href="/contact" 
-                  className="bg-smaa-red-600 hover:bg-smaa-red-500 text-white px-6 py-3 rounded-full font-bold text-lg transition-all shadow-lg hover:-translate-y-1"
+                  className="bg-smaa-red-600 hover:bg-smaa-red-500 text-white px-6 py-3 rounded-full font-bold text-lg transition-all shadow-lg hover:-translate-y-1 active:scale-95"
                 >
                   اطلب سيارتك
                 </Link>
                 <Link 
                   href="/contact" 
-                  className="bg-white border-2 border-smaa-blue-900 md:border-transparent md:bg-smaa-blue-800 md:hover:bg-smaa-blue-700 text-smaa-blue-900 md:text-white px-6 py-3 rounded-full font-bold text-lg transition-all shadow-lg hover:-translate-y-1"
+                  className="bg-white border-2 border-smaa-blue-900 md:border-transparent md:bg-smaa-blue-800 md:hover:bg-smaa-blue-700 text-smaa-blue-900 md:text-white px-6 py-3 rounded-full font-bold text-lg transition-all shadow-lg hover:-translate-y-1 active:scale-95"
                 >
                   اطلب عرضًا للشركات
                 </Link>
                 <Link 
                   href="/contact" 
-                  className="bg-white border-2 border-gray-200 hover:border-gray-300 text-gray-700 px-6 py-3 rounded-full font-bold text-lg transition-all shadow-lg hover:-translate-y-1"
+                  className="bg-white border-2 border-gray-200 hover:border-gray-300 text-gray-700 px-6 py-3 rounded-full font-bold text-lg transition-all shadow-lg hover:-translate-y-1 active:scale-95"
                 >
                   تواصل معنا
                 </Link>

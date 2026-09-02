@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { User, Building, Handshake, MessageSquareWarning, MessageCircle, Loader2, CheckCircle2 } from "lucide-react";
 
 type TabId = "individual" | "corporate" | "partner" | "complaint" | "general";
@@ -81,7 +81,7 @@ export default function FormsSection() {
               <button
                 key={tab.id}
                 onClick={() => { setActiveTab(tab.id as TabId); setStatusMsg(null); }}
-                className={`flex-1 py-4 px-2 flex items-center justify-center gap-2 text-sm md:text-base font-bold transition-all border-b-2 ${
+                className={`flex-1 py-4 px-2 flex items-center justify-center gap-2 text-sm md:text-base font-bold transition-all border-b-2 active:scale-95 ${
                   activeTab === tab.id 
                     ? "border-smaa-red-600 text-smaa-red-600 bg-gray-50/50" 
                     : "border-transparent text-gray-500 hover:bg-gray-50 hover:text-smaa-blue-900"
@@ -95,14 +95,16 @@ export default function FormsSection() {
 
           {/* Form Content */}
           <div className="p-6 md:p-10">
-            <motion.form 
-              key={activeTab}
-              onSubmit={handleSubmit}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}
-              className="grid grid-cols-1 md:grid-cols-2 gap-6"
-            >
+            <AnimatePresence mode="wait">
+              <motion.form 
+                key={activeTab}
+                onSubmit={handleSubmit}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.2 }}
+                className="grid grid-cols-1 md:grid-cols-2 gap-6"
+              >
               
               <div className="md:col-span-2">
                 {statusMsg && (
@@ -304,12 +306,13 @@ export default function FormsSection() {
 
               {/* Submit */}
               <div className="md:col-span-2 mt-6">
-                <button type="submit" disabled={isLoading} className="w-full flex items-center justify-center gap-2 bg-smaa-red-600 hover:bg-smaa-red-500 disabled:opacity-70 disabled:cursor-not-allowed text-white font-bold py-4 rounded-xl transition-all shadow-lg text-lg">
+                <button type="submit" disabled={isLoading} className="w-full flex items-center justify-center gap-2 bg-smaa-red-600 hover:bg-smaa-red-500 disabled:opacity-70 disabled:cursor-not-allowed text-white font-bold py-4 rounded-xl transition-all shadow-lg text-lg active:scale-95">
                   {isLoading ? <Loader2 className="animate-spin" /> : "إرسال الطلب"}
                 </button>
               </div>
 
             </motion.form>
+            </AnimatePresence>
           </div>
         </div>
 
