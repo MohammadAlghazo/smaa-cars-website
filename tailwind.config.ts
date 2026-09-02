@@ -9,9 +9,27 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        smaa: {
+          blue: {
+            900: "#0b1528",
+            800: "#13274a",
+            700: "#1d3a6e",
+            600: "#274f96",
+            500: "#3266bf",
+          },
+          red: {
+            600: "#dc2626",
+            500: "#ef4444",
+            400: "#f87171",
+          },
+          light: "#f8fafc",
+          dark: "#020617"
+        }
       },
+      backgroundImage: {
+        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+        'hero-gradient': 'linear-gradient(to top, #020617, transparent)',
+      }
     },
   },
   plugins: [],
