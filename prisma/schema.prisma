@@ -9,13 +9,40 @@ datasource db {
 
 model ContactMessage {
   id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+
+  // Common Fields
+  type      String   // individual, corporate, partner, complaint, general
   name      String
   phone     String
   email     String?
-  type      String   // استفسار، شكوى، طلب أفراد، طلب شركات، شراكة
-  message   String?
   city      String?
-  carType   String?
-  budget    String?
-  createdAt DateTime @default(now())
+
+  // Individual & Corporate Car Requests
+  carType      String?
+  carModel     String?
+  carCategory  String?
+  carColor     String?
+  budget       String?
+  notes        String? // General notes or message
+
+  // Corporate Specific
+  companyName  String?
+  managerName  String?
+  activityType String?
+  carQuantity  String?
+
+  // Partnership Specific
+  applicantName     String?
+  jobTitle          String?
+  country           String?
+  collaborationType String?
+  companyBio        String?
+  proposalDetails   String?
+
+  // Complaint Specific
+  complaintType   String? // شكوى، اقتراح، ملاحظة
+  orderNumber     String?
+  complaintTitle  String?
+  requiredAction  String?
 }

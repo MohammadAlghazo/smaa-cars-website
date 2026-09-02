@@ -1,87 +1,69 @@
 "use client";
 import { motion } from "framer-motion";
-import Image from "next/image";
 
 const steps = [
   {
     num: "01",
     title: "اختر ونحن نتحقق",
-    image: "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=800&auto=format&fit=crop",
-    align: "left"
+    desc: "أرسل لنا السيارة المطلوبة أو دعنا نبحث لك، ثم نقوم بالتحقق من حالتها ومستنداتها كاملة."
   },
   {
     num: "02",
     title: "الفحص الخارجي الشامل",
-    image: "https://images.unsplash.com/photo-1632823462943-4632b7194f1c?q=80&w=800&auto=format&fit=crop",
-    align: "right"
+    desc: "لضمان الجودة، يتم فحص السيارة في بلد المصدر قبل إتمام أي عملية شراء."
+  },
+  {
+    num: "03",
+    title: "تخليص الإجراءات الجمركية",
+    desc: "نتولى عنك كافة التراخيص، الجمارك، والمطابقة للمواصفات السعودية لضمان دخولها النظامي."
+  },
+  {
+    num: "04",
+    title: "التسليم حتى الباب",
+    desc: "نوصل السيارة إلى مكانك بكل أمان وراحة بال لتبدأ تجربة القيادة."
   }
 ];
 
 export default function HowItWorksSection() {
   return (
-    <section className="py-24 bg-smaa-dark relative overflow-hidden">
-      {/* Background Decor */}
-      <div className="absolute inset-0 opacity-10" style={{
-        backgroundImage: 'radial-gradient(circle at 50% 50%, #1e3a8a 0%, transparent 50%)',
-        backgroundSize: '100% 100%'
-      }}></div>
-
-      <div className="container mx-auto px-4 md:px-8 relative z-10">
-        <div className="text-center mb-20">
+    <section className="py-24 bg-gray-50 border-y border-gray-200">
+      <div className="container mx-auto px-4 md:px-8">
+        
+        <div className="text-center mb-16">
           <motion.h2 
             initial={{ opacity: 0, y: -20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-4xl md:text-5xl font-bold text-smaa-red-500 mb-4"
+            className="text-4xl font-bold text-smaa-blue-900 mb-4"
           >
-            كيف نعمل
+            آلية العمل
           </motion.h2>
-          <div className="w-24 h-1 bg-smaa-blue-600 mx-auto rounded-full"></div>
+          <div className="w-20 h-1 bg-smaa-red-600 mx-auto rounded-full"></div>
         </div>
 
-        <div className="flex flex-col gap-24">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {steps.map((step, idx) => (
-            <div key={idx} className={`flex flex-col ${step.align === 'right' ? 'md:flex-row-reverse' : 'md:flex-row'} items-center gap-8 md:gap-16`}>
-              
-              {/* Number */}
-              <motion.div 
-                initial={{ opacity: 0, scale: 0.5 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-                className="w-full md:w-1/3 flex justify-center"
-              >
-                <span className="text-8xl md:text-9xl font-bold text-transparent" style={{ WebkitTextStroke: '2px #dc2626' }}>
-                  {step.num}
-                </span>
-              </motion.div>
-
-              {/* Image & Title Card */}
-              <motion.div 
-                initial={{ opacity: 0, x: step.align === 'left' ? 50 : -50 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="w-full md:w-2/3 relative"
-              >
-                <div className="relative h-64 md:h-80 w-full rounded-2xl overflow-hidden shadow-2xl shadow-black/50">
-                  <Image 
-                    src={step.image} 
-                    alt={step.title}
-                    fill
-                    unoptimized
-                    className="object-cover"
-                  />
-                </div>
-                {/* Title Box */}
-                <div className={`absolute top-1/2 -translate-y-1/2 ${step.align === 'left' ? '-right-4 md:-right-10' : '-left-4 md:-left-10'} bg-[#4d1f1f] text-white p-6 md:p-8 rounded-xl shadow-xl w-48 md:w-56 text-center border-r-4 border-smaa-red-500`}>
-                  <h3 className="text-xl md:text-2xl font-bold leading-tight text-balance">
-                    {step.title}
-                  </h3>
-                </div>
-              </motion.div>
-
-            </div>
+            <motion.div 
+              key={idx}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: idx * 0.1 }}
+              className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 relative group hover:shadow-xl transition-all"
+            >
+              <div className="text-5xl font-extrabold text-gray-100 group-hover:text-smaa-red-50 transition-colors absolute top-4 left-4 z-0">
+                {step.num}
+              </div>
+              <div className="relative z-10 mt-6">
+                <h3 className="text-xl font-bold text-smaa-blue-900 mb-4 flex items-center gap-3">
+                  <span className="text-smaa-red-600">{step.num}</span>
+                  {step.title}
+                </h3>
+                <p className="text-gray-600 leading-relaxed text-sm">
+                  {step.desc}
+                </p>
+              </div>
+            </motion.div>
           ))}
         </div>
       </div>

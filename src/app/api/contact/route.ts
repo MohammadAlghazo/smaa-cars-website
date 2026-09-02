@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 
-// In development, to avoid multiple instances of PrismaClient
 const globalForPrisma = globalThis as unknown as {
   prisma: PrismaClient | undefined
 }
@@ -11,7 +10,13 @@ if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
-    const { name, phone, email, type, message, city, carType, budget } = body;
+    const { 
+      type, name, phone, email, city, carType, carModel, carCategory, 
+      carColor, budget, notes, companyName, managerName, activityType, 
+      carQuantity, applicantName, jobTitle, country, collaborationType, 
+      companyBio, proposalDetails, complaintType, orderNumber, 
+      complaintTitle, requiredAction 
+    } = body;
 
     if (!name || !phone || !type) {
       return NextResponse.json({ error: "الاسم، ورقم الجوال، ونوع الطلب حقول مطلوبة" }, { status: 400 });
@@ -19,14 +24,11 @@ export async function POST(req: NextRequest) {
 
     const newContact = await prisma.contactMessage.create({
       data: {
-        name,
-        phone,
-        email,
-        type,
-        message,
-        city,
-        carType,
-        budget,
+        type, name, phone, email, city, carType, carModel, carCategory, 
+        carColor, budget, notes, companyName, managerName, activityType, 
+        carQuantity, applicantName, jobTitle, country, collaborationType, 
+        companyBio, proposalDetails, complaintType, orderNumber, 
+        complaintTitle, requiredAction
       },
     });
 

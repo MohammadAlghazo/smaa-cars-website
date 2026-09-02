@@ -1,10 +1,12 @@
 "use client";
 import { motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 
 export default function AboutSection() {
   return (
-    <section id="about" className="py-24 bg-smaa-dark relative overflow-hidden">
+    <section className="py-24 bg-white relative overflow-hidden">
       <div className="container mx-auto px-4 md:px-8">
         <div className="flex flex-col lg:flex-row items-center gap-16">
           
@@ -18,30 +20,24 @@ export default function AboutSection() {
             >
               <div className="flex items-center gap-4 mb-6">
                 <div className="w-12 h-1 bg-smaa-red-600 rounded-full"></div>
-                <h2 className="text-4xl font-bold text-white">من نحن</h2>
+                <h2 className="text-4xl font-bold text-smaa-blue-900">من نحن</h2>
               </div>
               
-              <p className="text-gray-300 text-lg leading-relaxed mb-6 text-balance">
+              <h3 className="text-2xl font-bold text-gray-800 mb-4 leading-relaxed text-balance">
                 سما التوريد لخدمات السيارات – SMAA Cars شركة سعودية متخصصة في استيراد وتوريد وبيع السيارات الجديدة والمستعملة للأفراد والشركات.
-              </p>
-              <p className="text-gray-400 leading-relaxed mb-8 text-balance">
-                نحن نعلم أن استيراد سيارة من الخارج قد يكون مغامرة محفوفة بالشكوك: هل تم تزوير العداد؟ هل هناك أضرار خفية؟ من سيهتم بها بعد وصولها؟ قررنا إنهاء هذه الشكوك من خلال تقديم خدمة متكاملة تركز على ما يهمك حقاً: سلامة السيارة وراحة بالك.
+              </h3>
+              
+              <p className="text-gray-600 leading-relaxed mb-8 text-balance text-lg">
+                نوفّر حلولًا مرنة تناسب مختلف الاحتياجات، سواءً لشراء سيارة للاستخدام الشخصي، أو توريد مجموعة من السيارات للمعارض والشركات والأساطيل. نعتمد على دراسة احتياج العميل والبحث عن الخيارات المناسبة من مصادر متعددة حول العالم.
               </p>
 
-              <div className="grid sm:grid-cols-2 gap-6">
-                <div className="bg-smaa-blue-900/30 border border-smaa-blue-800 p-6 rounded-2xl">
-                  <h3 className="text-xl font-bold text-smaa-red-500 mb-3">رؤيتنا</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">
-                    أن نكون من الجهات الموثوقة في مجال توريد واستيراد السيارات، وأن نوفّر حلولًا عملية تخدم الأفراد وقطاع الأعمال داخل المملكة.
-                  </p>
-                </div>
-                <div className="bg-smaa-blue-900/30 border border-smaa-blue-800 p-6 rounded-2xl">
-                  <h3 className="text-xl font-bold text-smaa-red-500 mb-3">رسالتنا</h3>
-                  <p className="text-gray-400 text-sm leading-relaxed">
-                    تسهيل الوصول إلى السيارات المناسبة من الأسواق المحلية والعالمية، من خلال خدمة احترافية واضحة ومرنة تراعي احتياج كل عميل.
-                  </p>
-                </div>
-              </div>
+              <Link 
+                href="/about" 
+                className="inline-flex items-center gap-2 text-smaa-red-600 font-bold hover:text-smaa-red-500 transition-colors group text-lg"
+              >
+                اكتشف المزيد عنا
+                <ArrowLeft size={20} className="group-hover:-translate-x-2 transition-transform" />
+              </Link>
             </motion.div>
           </div>
 
@@ -54,27 +50,26 @@ export default function AboutSection() {
               transition={{ duration: 0.6 }}
               className="absolute inset-0"
             >
-              <div className="relative w-full h-full">
+              <div className="relative w-full h-full flex items-center justify-center">
                 {/* Decorative background shapes */}
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-smaa-red-600/20 rounded-full blur-3xl"></div>
-                <div className="absolute top-0 right-0 w-64 h-64 bg-smaa-blue-600/20 rounded-full blur-3xl"></div>
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-gray-100 rounded-full z-0"></div>
 
                 <Image 
-                  src="https://images.unsplash.com/photo-1619405399517-d7fce0f13302?q=80&w=800&auto=format&fit=crop"
-                  alt="Luxury Car Inside"
-                  width={300}
-                  height={400}
+                  src="https://images.unsplash.com/photo-1549317661-bd32c8ce0db2?q=80&w=800&auto=format&fit=crop"
+                  alt="Premium Sedan"
+                  width={400}
+                  height={300}
                   unoptimized
-                  className="absolute top-0 right-4 md:right-10 rounded-2xl border-4 border-smaa-dark shadow-2xl object-cover h-64 z-10 rotate-3"
+                  className="absolute top-10 right-4 md:right-10 rounded-2xl shadow-xl object-cover h-64 z-10"
                 />
                 
                 <Image 
-                  src="https://images.unsplash.com/photo-1603584173870-7f23fdae1b7a?q=80&w=800&auto=format&fit=crop"
-                  alt="Premium Sedan"
+                  src="https://images.unsplash.com/photo-1617531653332-bd46c24f2068?q=80&w=800&auto=format&fit=crop"
+                  alt="Car Inspection"
                   width={350}
                   height={250}
                   unoptimized
-                  className="absolute bottom-10 left-4 md:left-10 rounded-2xl border-4 border-smaa-dark shadow-2xl object-cover h-56 z-20 -rotate-3"
+                  className="absolute bottom-10 left-4 md:left-10 rounded-2xl shadow-2xl object-cover h-56 z-20 border-8 border-white"
                 />
               </div>
             </motion.div>

@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ar" dir="rtl" className="scroll-smooth">
-      <body className={`${alexandria.className} bg-smaa-dark text-smaa-light antialiased overflow-x-hidden min-h-screen flex flex-col`}>
+      <body className={`${alexandria.className} bg-white text-smaa-gray-900 antialiased overflow-x-hidden min-h-screen flex flex-col`}>
         <Navbar />
         <main className="flex-grow">{children}</main>
         <Footer />
