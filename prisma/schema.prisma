@@ -46,3 +46,34 @@ model ContactMessage {
   complaintTitle  String?
   requiredAction  String?
 }
+
+model Car {
+  id           String   @id @default(cuid())
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  name         String
+  brand        String
+  modelYear    String
+  mileage      String
+  price        String?
+  description  String   // Rich text
+  mainImage    String
+  images       String   // JSON array of strings
+  features     String   // Rich text or JSON array
+  isAvailable  Boolean  @default(true)
+}
+
+model Article {
+  id           String   @id @default(cuid())
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  title        String
+  slug         String   @unique
+  excerpt      String
+  content      String   // Rich text
+  coverImage   String
+  author       String   @default("SMAA CARS")
+  isPublished  Boolean  @default(true)
+}

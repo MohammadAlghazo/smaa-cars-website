@@ -30,7 +30,8 @@ export default function Footer() {
             <ul className="flex flex-col gap-3 text-gray-300">
               <li><Link href="/" className="hover:text-smaa-red-400 transition-colors">الرئيسية</Link></li>
               <li><Link href="/about" className="hover:text-smaa-red-400 transition-colors">من نحن</Link></li>
-              <li><Link href="/services" className="hover:text-smaa-red-400 transition-colors">خدماتنا</Link></li>
+              <li><Link href="/cars" className="hover:text-smaa-red-400 transition-colors">السيارات المستوردة</Link></li>
+              <li><Link href="/articles" className="hover:text-smaa-red-400 transition-colors">المركز الإعلامي</Link></li>
               <li><Link href="/services#individuals" className="hover:text-smaa-red-400 transition-colors">خدمات الأفراد</Link></li>
               <li><Link href="/services#corporates" className="hover:text-smaa-red-400 transition-colors">خدمات الشركات</Link></li>
               <li><Link href="/contact" className="hover:text-smaa-red-400 transition-colors">التعاون والشراكة</Link></li>

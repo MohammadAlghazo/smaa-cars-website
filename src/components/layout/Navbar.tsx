@@ -26,7 +26,9 @@ export default function Navbar() {
   const navLinks = [
     { name: "الرئيسية", href: "/" },
     { name: "من نحن", href: "/about" },
-    { name: "الخدمات", href: "/services" },
+    { name: "خدماتنا", href: "/services" },
+    { name: "السيارات المستوردة", href: "/cars" },
+    { name: "المركز الإعلامي", href: "/articles" },
     { name: "تواصل معنا", href: "/contact" },
   ];
 
