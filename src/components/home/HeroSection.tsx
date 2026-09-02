@@ -29,22 +29,22 @@ export default function HeroSection() {
                 نستورد من جميع أنحاء العالم ونوفر خيارات متنوعة تلائم احتياجاتك مع ضمان الوضوح والجودة من الطلب وحتى التسليم. خيارات آمنة، سيارات فخمة، راحة بال تامة.
               </p>
               
-              <div className="flex flex-wrap gap-4 mt-8">
+              <div className="flex flex-col md:flex-row flex-wrap gap-4 mt-8 w-full">
                 <Link 
                   href="/contact" 
-                  className="bg-smaa-red-600 hover:bg-smaa-red-500 text-white px-6 py-3 rounded-full font-bold text-lg transition-all shadow-lg hover:-translate-y-1 active:scale-95"
+                  className="bg-smaa-red-600 hover:bg-smaa-red-500 text-white px-6 py-4 md:py-3 rounded-xl md:rounded-full font-bold text-lg transition-all shadow-lg text-center w-full md:w-auto hover:-translate-y-1 active:scale-95"
                 >
                   اطلب سيارتك
                 </Link>
                 <Link 
                   href="/contact" 
-                  className="bg-white border-2 border-smaa-blue-900 md:border-transparent md:bg-smaa-blue-800 md:hover:bg-smaa-blue-700 text-smaa-blue-900 md:text-white px-6 py-3 rounded-full font-bold text-lg transition-all shadow-lg hover:-translate-y-1 active:scale-95"
+                  className="bg-white border-2 border-smaa-blue-900 md:border-transparent md:bg-smaa-blue-800 md:hover:bg-smaa-blue-700 text-smaa-blue-900 md:text-white px-6 py-4 md:py-3 rounded-xl md:rounded-full font-bold text-lg transition-all shadow-lg text-center w-full md:w-auto hover:-translate-y-1 active:scale-95"
                 >
                   اطلب عرضًا للشركات
                 </Link>
                 <Link 
                   href="/contact" 
-                  className="bg-white border-2 border-gray-200 hover:border-gray-300 text-gray-700 px-6 py-3 rounded-full font-bold text-lg transition-all shadow-lg hover:-translate-y-1 active:scale-95"
+                  className="bg-white border-2 border-gray-200 hover:border-gray-300 text-gray-700 px-6 py-4 md:py-3 rounded-xl md:rounded-full font-bold text-lg transition-all shadow-lg text-center w-full md:w-auto hover:-translate-y-1 active:scale-95"
                 >
                   تواصل معنا
                 </Link>
@@ -74,7 +74,7 @@ export default function HeroSection() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1 }}
-                className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl flex items-center gap-4 border border-gray-100"
+                className="absolute -bottom-4 right-4 md:-bottom-6 md:-left-6 md:right-auto bg-white p-4 md:p-6 rounded-2xl shadow-xl flex items-center gap-4 border border-gray-100 z-20"
               >
                 <div className="bg-smaa-blue-900 w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-xl">
                   +2

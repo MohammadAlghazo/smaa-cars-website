@@ -26,7 +26,7 @@ const steps = [
 
 export default function HowItWorksSection() {
   return (
-    <section className="py-24 bg-gray-50 border-y border-gray-200">
+    <section className="py-12 md:py-24 bg-gray-50 border-y border-gray-200">
       <div className="container mx-auto px-4 md:px-8">
         
         <div className="text-center mb-16">
@@ -51,7 +51,7 @@ export default function HowItWorksSection() {
               transition={{ delay: idx * 0.1 }}
               className="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 relative group hover:shadow-xl transition-all"
             >
-              <div className="text-5xl font-extrabold text-gray-100 group-hover:text-smaa-red-50 transition-colors absolute top-4 left-4 z-0">
+              <div className="text-6xl font-black text-gray-50 group-hover:text-smaa-red-50/50 transition-colors absolute top-4 left-4 z-0 select-none">
                 {step.num}
               </div>
               <div className="relative z-10 mt-6">

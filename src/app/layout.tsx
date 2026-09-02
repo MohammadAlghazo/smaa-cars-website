@@ -17,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ar" dir="rtl" className="scroll-smooth">
+    <html lang="ar" dir="rtl" className="scroll-smooth overflow-x-hidden">
       <body className={`${alexandria.className} bg-white text-smaa-gray-900 antialiased overflow-x-hidden min-h-screen flex flex-col`}>
         <Navbar />
         <main className="flex-grow">{children}</main>
