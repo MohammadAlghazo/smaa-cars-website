@@ -1,0 +1,21 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model ContactMessage {
+  id        String   @id @default(cuid())
+  name      String
+  phone     String
+  email     String?
+  type      String   // استفسار، شكوى، طلب أفراد، طلب شركات، شراكة
+  message   String?
+  city      String?
+  carType   String?
+  budget    String?
+  createdAt DateTime @default(now())
+}
