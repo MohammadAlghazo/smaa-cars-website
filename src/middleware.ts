@@ -1,21 +1,38 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
+import { verifyAdminToken } from '@/lib/jwt';
 
-export function middleware(request: NextRequest) {
-  // Check for auth cookie
-  const authCookie = request.cookies.get('smaa_admin_auth');
-  const isAuth = authCookie?.value === 'authenticated';
-
+export async function middleware(request: NextRequest) {
   const isLoginPage = request.nextUrl.pathname.startsWith('/login');
   const isAdminRoute = request.nextUrl.pathname.startsWith('/admin');
 
-  // If user is accessing an admin route and is not authenticated, redirect to login
-  if (isAdminRoute && !isAuth) {
-    return NextResponse.redirect(new URL('/login', request.url));
+  if (!isAdminRoute && !isLoginPage) {
+    return NextResponse.next();
   }
 
-  // If user is accessing login page and is ALREADY authenticated, redirect to admin
-  if (isLoginPage && isAuth) {
+  const token = request.cookies.get('smaa_admin_auth')?.value;
+
+  let isAuthenticated = false;
+
+  if (token) {
+    try {
+      await verifyAdminToken(token);
+      isAuthenticated = true;
+    } catch {
+      // Token is invalid or expired - clear it below
+      isAuthenticated = false;
+    }
+  }
+
+  // Accessing admin without valid token → redirect to login and clear bad cookie
+  if (isAdminRoute && !isAuthenticated) {
+    const response = NextResponse.redirect(new URL('/login', request.url));
+    response.cookies.delete('smaa_admin_auth');
+    return response;
+  }
+
+  // Accessing login while already authenticated → redirect to admin
+  if (isLoginPage && isAuthenticated) {
     return NextResponse.redirect(new URL('/admin', request.url));
   }
 

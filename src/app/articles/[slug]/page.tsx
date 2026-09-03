@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { CalendarDays, User, Share2 } from "lucide-react";
 import { notFound } from "next/navigation";
+import DOMPurify from "isomorphic-dompurify";
 
 import { Metadata } from "next";
 
@@ -118,7 +119,7 @@ export default async function ArticleDetailPage({ params }: { params: { slug: st
           <div className="p-8 md:p-12 pt-0">
             <div 
               className="prose prose-lg max-w-none prose-headings:text-smaa-blue-900 prose-a:text-smaa-red-600 prose-img:rounded-2xl" 
-              dangerouslySetInnerHTML={{ __html: article.content }}
+              dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(article.content) }}
             >
             </div>
           </div>

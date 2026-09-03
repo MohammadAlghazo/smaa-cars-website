@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { CalendarDays, Gauge, MessageCircle, Share2 } from "lucide-react";
 import { notFound } from "next/navigation";
+import DOMPurify from "isomorphic-dompurify";
 
 import { Metadata } from "next";
 
@@ -158,7 +159,7 @@ export default async function CarDetailPage({ params }: { params: { id: string }
               <h2 className="text-2xl font-bold text-smaa-blue-900 mb-6 border-b pb-4">الوصف والتفاصيل</h2>
               
               {/* Render Rich Text Content */}
-              <div className="prose prose-lg max-w-none prose-headings:text-smaa-blue-900 prose-a:text-smaa-red-600 mb-10" dangerouslySetInnerHTML={{ __html: car.description }}>
+              <div className="prose prose-lg max-w-none prose-headings:text-smaa-blue-900 prose-a:text-smaa-red-600 mb-10" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(car.description) }}>
               </div>
 
             </div>
