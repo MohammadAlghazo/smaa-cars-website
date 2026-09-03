@@ -4,8 +4,45 @@ import Image from "next/image";
 import { CalendarDays, Gauge, MessageCircle, Share2 } from "lucide-react";
 import { notFound } from "next/navigation";
 
+import { Metadata } from "next";
+
 // ISR
 export const revalidate = 3600;
+
+type Props = {
+  params: { id: string };
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const car = await prisma.car.findUnique({
+    where: { id: params.id, isAvailable: true },
+  });
+
+  if (!car) {
+    return {
+      title: "سيارة غير متوفرة",
+    };
+  }
+
+  const title = `${car.brand} ${car.name} ${car.modelYear}`;
+  const description = `اكتشف ${title} عبر سما التوريد لخدمات السيارات.${car.price ? ` السعر: ${car.price} ريال.` : ''}`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      images: car.mainImage ? [car.mainImage] : [],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: car.mainImage ? [car.mainImage] : [],
+    },
+  };
+}
 
 export default async function CarDetailPage({ params }: { params: { id: string } }) {
   const car = await prisma.car.findUnique({

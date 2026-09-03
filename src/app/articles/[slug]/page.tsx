@@ -4,7 +4,45 @@ import Image from "next/image";
 import { CalendarDays, User, Share2 } from "lucide-react";
 import { notFound } from "next/navigation";
 
+import { Metadata } from "next";
+
 export const revalidate = 3600;
+
+type Props = {
+  params: { slug: string };
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const article = await prisma.article.findUnique({
+    where: { slug: params.slug, isPublished: true },
+  });
+
+  if (!article) {
+    return {
+      title: "مقال غير متوفر",
+    };
+  }
+
+  const title = article.title;
+  // Use excerpt or strip HTML from content if excerpt is missing (simplified here)
+  const description = article.excerpt || `اقرأ مقال ${title} على مدونة سما التوريد.`;
+
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      images: article.coverImage ? [article.coverImage] : [],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: article.coverImage ? [article.coverImage] : [],
+    },
+  };
+}
 
 export default async function ArticleDetailPage({ params }: { params: { slug: string } }) {
   const article = await prisma.article.findUnique({

@@ -6,9 +6,41 @@ import "./globals.css";
 
 const alexandria = Alexandria({ subsets: ["arabic", "latin"] });
 
+const siteTitle = "سما التوريد لخدمات السيارات | SMAA CARS";
+const siteDesc = "حلول متكاملة لاستيراد وتوريد وبيع السيارات للأفراد والشركات داخل المملكة العربية السعودية. نوفر أفضل الخيارات بأسعار تنافسية وخدمات ما بعد البيع المميزة.";
+
 export const metadata: Metadata = {
-  title: "سما التوريد لخدمات السيارات | SMAA CARS",
-  description: "حلول متكاملة لاستيراد وتوريد وبيع السيارات للأفراد والشركات داخل المملكة العربية السعودية.",
+  metadataBase: new URL("https://smaacars.com"),
+  title: {
+    default: siteTitle,
+    template: "%s | SMAA CARS",
+  },
+  description: siteDesc,
+  keywords: ["سيارات", "استيراد سيارات", "سما التوريد", "SMAA CARS", "معرض سيارات", "السعودية"],
+  authors: [{ name: "SMAA CARS" }],
+  creator: "SMAA CARS",
+  openGraph: {
+    type: "website",
+    locale: "ar_SA",
+    url: "https://smaacars.com",
+    siteName: siteTitle,
+    title: siteTitle,
+    description: siteDesc,
+    images: [
+      {
+        url: "/logo.png",
+        width: 1200,
+        height: 630,
+        alt: siteTitle,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteTitle,
+    description: siteDesc,
+    images: ["/logo.png"],
+  },
 };
 
 export default function RootLayout({
