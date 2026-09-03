@@ -1,12 +1,10 @@
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import Image from "next/image";
 import { CalendarDays, User, Share2 } from "lucide-react";
 import { notFound } from "next/navigation";
 
 export const revalidate = 3600;
-
-const prisma = new PrismaClient();
 
 export default async function ArticleDetailPage({ params }: { params: { slug: string } }) {
   const article = await prisma.article.findUnique({

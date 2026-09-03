@@ -1,12 +1,10 @@
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import Image from "next/image";
 import { Search, Filter, ArrowLeft, Gauge, CalendarDays } from "lucide-react";
 
 // Revalidate this page every hour (ISR) to keep it blazing fast but fresh
 export const revalidate = 3600;
-
-const prisma = new PrismaClient();
 
 export default async function CarsPage() {
   const cars = await prisma.car.findMany({

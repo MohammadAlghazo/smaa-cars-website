@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import Image from "next/image";
 import { CalendarDays, Gauge, MessageCircle, Share2 } from "lucide-react";
@@ -6,8 +6,6 @@ import { notFound } from "next/navigation";
 
 // ISR
 export const revalidate = 3600;
-
-const prisma = new PrismaClient();
 
 export default async function CarDetailPage({ params }: { params: { id: string } }) {
   const car = await prisma.car.findUnique({

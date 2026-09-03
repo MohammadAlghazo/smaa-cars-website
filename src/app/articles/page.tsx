@@ -1,12 +1,10 @@
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, CalendarDays, User } from "lucide-react";
 
 // ISR
 export const revalidate = 3600;
-
-const prisma = new PrismaClient();
 
 export default async function ArticlesPage() {
   const articles = await prisma.article.findMany({

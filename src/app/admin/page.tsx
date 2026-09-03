@@ -1,9 +1,7 @@
-import { PrismaClient } from "@prisma/client";
 import { Users, Building2, Handshake, MessageSquareWarning, MessageCircle, Car, FileText } from "lucide-react";
+import { prisma } from "@/lib/prisma";
 
 export const dynamic = "force-dynamic";
-
-const prisma = new PrismaClient();
 
 export default async function AdminDashboard() {
   const counts = await Promise.all([

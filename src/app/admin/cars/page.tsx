@@ -1,10 +1,9 @@
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import Image from "next/image";
 import { Car, Plus, Edit } from "lucide-react";
 
 export const dynamic = "force-dynamic";
-const prisma = new PrismaClient();
 
 export default async function AdminCarsPage() {
   const cars = await prisma.car.findMany({
