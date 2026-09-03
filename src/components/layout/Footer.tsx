@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { Phone, Mail, MapPin } from "lucide-react";
+import { Phone, Mail, MapPin, Lock } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 export default function Footer() {
@@ -63,9 +63,12 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-smaa-blue-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
           <p>© {new Date().getFullYear()} سما التوريد لخدمات السيارات – جميع الحقوق محفوظة.</p>
-          <div className="flex gap-4">
+          <div className="flex gap-4 items-center">
             <Link href="#" className="hover:text-white transition-colors">سياسة الخصوصية</Link>
             <Link href="#" className="hover:text-white transition-colors">الشروط والأحكام</Link>
+            <Link href="/admin" className="hover:text-smaa-red-400 transition-colors mr-2 opacity-50 hover:opacity-100" title="لوحة التحكم">
+              <Lock size={14} />
+            </Link>
           </div>
         </div>
       </div>

@@ -34,3 +34,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Snapshot Generator
+generate-snapshot.ps1
+project-code-snapshot.md
