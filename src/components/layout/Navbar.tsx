@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X, ChevronDown } from "lucide-react";
@@ -100,9 +100,10 @@ export default function Navbar() {
       {/* Mobile Menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <>
+          <React.Fragment key="mobile-menu-wrapper">
             {/* Backdrop */}
             <motion.div 
+              key="backdrop"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -112,6 +113,7 @@ export default function Navbar() {
             
             {/* Menu Panel */}
             <motion.div 
+              key="menu-panel"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
@@ -133,7 +135,7 @@ export default function Navbar() {
                 <button 
                   onClick={() => setIsContactOpen(!isContactOpen)}
                   className={`w-full text-right font-medium text-lg p-3 flex justify-between items-center transition-colors ${
-                    pathname.startsWith("/contact") || isContactOpen ? "bg-gray-50 text-smaa-blue-900" : "text-smaa-blue-900"
+                    pathname?.startsWith("/contact") || isContactOpen ? "bg-gray-50 text-smaa-blue-900" : "text-smaa-blue-900"
                   }`}
                 >
                   تواصل معنا
@@ -142,6 +144,7 @@ export default function Navbar() {
                 <AnimatePresence>
                   {isContactOpen && (
                     <motion.div 
+                      key="contact-dropdown"
                       initial={{ height: 0 }} 
                       animate={{ height: "auto" }} 
                       exit={{ height: 0 }} 
@@ -169,7 +172,7 @@ export default function Navbar() {
                 اطلب سيارتك الآن
               </Link>
             </motion.div>
-          </>
+          </React.Fragment>
         )}
       </AnimatePresence>
     </nav>
