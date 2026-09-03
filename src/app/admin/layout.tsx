@@ -46,7 +46,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         }`}
       >
         <div className="p-6 flex items-center justify-between border-b border-white/10">
-          <div className="relative w-24 h-10 bg-white/10 rounded p-2">
+          <div className="relative w-40 h-14">
             <Image src="/logo.png" alt="SMAA CARS" fill className="object-contain filter brightness-0 invert" unoptimized />
           </div>
           <button className="lg:hidden text-white" onClick={() => setSidebarOpen(false)}>

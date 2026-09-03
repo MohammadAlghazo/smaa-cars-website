@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
@@ -7,17 +7,8 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   if (pathname.startsWith('/admin') || pathname.startsWith('/login')) {
     return null;
@@ -33,12 +24,12 @@ export default function Navbar() {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled || pathname !== '/' ? "bg-white/95 backdrop-blur-md shadow-md py-3" : "bg-transparent py-5"}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-white/95 backdrop-blur-md shadow-md py-3`}>
       <div className="container mx-auto px-4 md:px-8 flex justify-between items-center">
         <Link href="/" className="flex items-center gap-2">
-          <div className="relative w-28 h-10 flex items-center justify-center">
-            {/* Logo handles dark/light automatically using CSS filter depending on background, but since it's an image, let's just make it clear. In mobile when not scrolled, it might be white. */}
-            <Image src="/logo.png" alt="SMAA CARS" fill className={`object-contain transition-all ${(!isScrolled && pathname === '/') ? 'brightness-0 invert' : ''}`} priority unoptimized />
+          {/* Logo enlarged even further */}
+          <div className="relative w-56 h-20 md:w-64 md:h-24 flex items-center justify-center">
+            <Image src="/logo.png" alt="SMAA CARS" fill className="object-contain brightness-0" priority />
           </div>
         </Link>
         

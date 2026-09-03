@@ -1,0 +1,86 @@
+import { prisma } from "@/lib/prisma";
+import Link from "next/link";
+import Image from "next/image";
+import { ArrowLeft, CalendarDays, User } from "lucide-react";
+
+export default async function LatestArticlesSection() {
+  const articles = await prisma.article.findMany({
+    where: { isPublished: true },
+    orderBy: { createdAt: "desc" },
+    take: 4,
+  });
+
+  if (articles.length === 0) return null;
+
+  return (
+    <section className="py-20 bg-white">
+      <div className="container mx-auto px-4 md:px-8">
+        <div className="flex flex-col md:flex-row justify-between items-end mb-12">
+          <div>
+            <h2 className="text-3xl md:text-4xl font-bold text-smaa-blue-900 mb-4">المركز الإعلامي</h2>
+            <div className="w-16 h-1 bg-smaa-red-600 rounded-full"></div>
+            <p className="text-gray-500 mt-4 max-w-xl">
+              اكتشف أحدث الأخبار، التحديثات، والمقالات حول عالم السيارات وخدماتنا المستمرة.
+            </p>
+          </div>
+          <Link 
+            href="/articles" 
+            className="hidden md:flex items-center gap-2 text-smaa-blue-900 hover:text-smaa-red-600 font-bold transition-colors group"
+          >
+            عرض جميع المقالات
+            <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {articles.map((article) => (
+            <Link href={`/articles/${article.slug}`} key={article.id} className="group flex flex-col h-full">
+              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-4 bg-gray-100 shadow-sm">
+                <Image 
+                  src={article.coverImage || "/placeholder-article.jpg"} 
+                  alt={article.title} 
+                  fill 
+                  className="object-cover group-hover:scale-110 transition-transform duration-500"
+                />
+              </div>
+              
+              <div className="flex-1 flex flex-col">
+                <div className="flex items-center gap-4 text-xs text-gray-500 mb-3">
+                  <div className="flex items-center gap-1">
+                    <CalendarDays size={14} className="text-smaa-red-600" />
+                    <span>{new Date(article.createdAt).toLocaleDateString('ar-SA')}</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <User size={14} className="text-smaa-red-600" />
+                    <span>{article.author}</span>
+                  </div>
+                </div>
+
+                <h3 className="text-xl font-bold text-smaa-blue-900 mb-2 line-clamp-2 group-hover:text-smaa-red-600 transition-colors">
+                  {article.title}
+                </h3>
+                
+                <p className="text-gray-600 text-sm line-clamp-2 mb-4">
+                  {article.excerpt}
+                </p>
+
+                <div className="mt-auto flex items-center gap-2 text-smaa-red-600 font-bold text-sm">
+                  اقرأ المزيد
+                  <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
+                </div>
+              </div>
+            </Link>
+          ))}
+        </div>
+
+        <Link 
+          href="/articles" 
+          className="md:hidden mt-8 flex items-center justify-center gap-2 text-smaa-blue-900 font-bold w-full bg-gray-50 border border-gray-200 rounded-xl py-4 active:scale-95 transition-all"
+        >
+          عرض جميع المقالات
+          <ArrowLeft size={20} />
+        </Link>
+      </div>
+    </section>
+  );
+}

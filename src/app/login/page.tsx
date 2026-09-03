@@ -41,8 +41,8 @@ export default function LoginPage() {
     <div className="min-h-screen bg-gray-50 flex items-center justify-center p-4">
       <div className="bg-white p-8 rounded-3xl shadow-xl max-w-md w-full border border-gray-100">
         
-        <div className="flex justify-center mb-8 relative w-32 h-12 mx-auto">
-          <Image src="/logo.png" alt="SMAA CARS" fill className="object-contain" unoptimized />
+        <div className="flex justify-center mb-8 relative w-48 h-16 mx-auto">
+          <Image src="/logo.png" alt="SMAA CARS" fill className="object-contain brightness-0" unoptimized />
         </div>
         
         <h1 className="text-2xl font-bold text-center text-smaa-blue-900 mb-8">تسجيل الدخول للإدارة</h1>
