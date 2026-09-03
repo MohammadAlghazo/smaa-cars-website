@@ -2,12 +2,13 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isContactOpen, setIsContactOpen] = useState(false);
   const pathname = usePathname();
 
   if (pathname.startsWith('/admin') || pathname.startsWith('/login')) {
@@ -20,7 +21,14 @@ export default function Navbar() {
     { name: "خدماتنا", href: "/services" },
     { name: "السيارات المستوردة", href: "/cars" },
     { name: "المركز الإعلامي", href: "/articles" },
-    { name: "تواصل معنا", href: "/contact" },
+  ];
+
+  const contactLinks = [
+    { name: "طلب الأفراد", href: "/contact/individual" },
+    { name: "طلب الشركات", href: "/contact/corporate" },
+    { name: "الشراكة والتعاون", href: "/contact/partner" },
+    { name: "الشكاوى والمقترحات", href: "/contact/complaint" },
+    { name: "تواصل عام", href: "/contact/general" },
   ];
 
   return (
@@ -47,6 +55,34 @@ export default function Navbar() {
               {link.name}
             </Link>
           ))}
+
+          {/* Contact Dropdown Desktop */}
+          <div className="relative group">
+            <button className={`font-medium transition-colors px-3 py-2 rounded-lg flex items-center gap-1 ${
+                pathname.startsWith("/contact")
+                  ? "text-smaa-red-600 font-bold bg-smaa-red-50" 
+                  : "text-smaa-blue-900 hover:text-smaa-red-500 hover:bg-gray-50"
+              }`}>
+              تواصل معنا
+              <ChevronDown size={16} className="group-hover:rotate-180 transition-transform duration-300" />
+            </button>
+            <div className="absolute top-full right-0 pt-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 w-52 z-50">
+              <div className="bg-white rounded-xl shadow-xl border border-gray-100 overflow-hidden flex flex-col">
+                {contactLinks.map((link, idx) => (
+                  <Link 
+                    key={idx} 
+                    href={link.href} 
+                    className={`px-4 py-3 text-sm font-medium transition-colors ${
+                      pathname === link.href ? "bg-smaa-red-50 text-smaa-red-600" : "text-gray-700 hover:bg-gray-50 hover:text-smaa-blue-900"
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          </div>
+
           <Link href="/contact/individual" className="bg-smaa-red-600 hover:bg-smaa-red-500 text-white px-6 py-2.5 rounded-full font-bold transition-all shadow-md text-sm xl:text-base mr-4">
             اطلب سيارتك
           </Link>
@@ -79,7 +115,7 @@ export default function Navbar() {
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
-              className="lg:hidden absolute top-full left-4 right-4 bg-white rounded-2xl shadow-2xl flex flex-col gap-2 overflow-hidden z-50 p-6 mt-2"
+              className="lg:hidden absolute top-full left-4 right-4 bg-white rounded-2xl shadow-2xl flex flex-col gap-2 overflow-hidden z-50 p-6 mt-2 max-h-[75vh] overflow-y-auto"
             >
               {navLinks.map((link, idx) => (
                 <Link 
@@ -91,7 +127,44 @@ export default function Navbar() {
                   {link.name}
                 </Link>
               ))}
-              <div className="h-px bg-gray-100 my-2"></div>
+
+              {/* Contact Dropdown Mobile */}
+              <div className="flex flex-col border border-gray-100 rounded-xl overflow-hidden mt-1">
+                <button 
+                  onClick={() => setIsContactOpen(!isContactOpen)}
+                  className={`w-full text-right font-medium text-lg p-3 flex justify-between items-center transition-colors ${
+                    pathname.startsWith("/contact") || isContactOpen ? "bg-gray-50 text-smaa-blue-900" : "text-smaa-blue-900"
+                  }`}
+                >
+                  تواصل معنا
+                  <ChevronDown size={20} className={isContactOpen ? "rotate-180 transition-transform" : "transition-transform"} />
+                </button>
+                <AnimatePresence>
+                  {isContactOpen && (
+                    <motion.div 
+                      initial={{ height: 0 }} 
+                      animate={{ height: "auto" }} 
+                      exit={{ height: 0 }} 
+                      className="flex flex-col bg-white overflow-hidden"
+                    >
+                      {contactLinks.map((link, idx) => (
+                        <Link 
+                          key={idx}
+                          href={link.href} 
+                          onClick={() => setIsMobileMenuOpen(false)} 
+                          className={`p-3 px-5 text-[15px] font-medium border-t border-gray-50 transition-colors ${
+                            pathname === link.href ? "bg-smaa-red-50 text-smaa-red-600" : "text-gray-600 hover:text-smaa-blue-900 hover:bg-gray-50"
+                          }`}
+                        >
+                          {link.name}
+                        </Link>
+                      ))}
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </div>
+
+              <div className="h-px bg-gray-100 my-3"></div>
               <Link href="/contact/individual" onClick={() => setIsMobileMenuOpen(false)} className="bg-smaa-red-600 hover:bg-smaa-red-500 text-white p-4 rounded-xl font-bold transition-all text-center active:scale-95 flex items-center justify-center">
                 اطلب سيارتك الآن
               </Link>

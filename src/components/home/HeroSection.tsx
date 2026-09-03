@@ -30,9 +30,9 @@ export default function HeroSection() {
                 الخيار الأول لاستيراد السيارات في السعودية
               </div>
 
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-smaa-blue-900 mb-6 leading-[1.2] tracking-tight">
-                استورد سيارة أحلامك <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-smaa-red-600 to-red-400">بكل ثقة وأمان</span>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-smaa-blue-900 mb-6 leading-[1.2] tracking-tight flex flex-col gap-3">
+                <span>استورد سيارة أحلامك</span>
+                <span className="text-smaa-red-600">بكل ثقة وأمان</span>
               </h1>
               
               <p className="text-lg md:text-xl text-gray-600 mb-10 max-w-2xl leading-relaxed">

@@ -11,16 +11,19 @@ const config: Config = {
       colors: {
         smaa: {
           blue: {
-            900: "#0f234b", // Deep corporate blue
+            900: "#0f234b",
             800: "#183670",
             700: "#2450a5",
             600: "#3266bf",
             500: "#497bd0",
+            50: "#eef3fc",
           },
           red: {
-            600: "#dc2626", // Corporate red
-            500: "#ef4444", // Bright red for arrows/hovers
+            600: "#dc2626",
+            500: "#ef4444",
             400: "#f87171",
+            50: "#fef2f2",
+            100: "#fee2e2",
           },
           light: "#ffffff",
           gray: {
@@ -35,7 +38,16 @@ const config: Config = {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'hero-gradient': 'linear-gradient(to right, #0f234b, transparent)',
-      }
+      },
+      keyframes: {
+        marquee: {
+          "0%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(-33.333%)" },
+        },
+      },
+      animation: {
+        marquee: "marquee 20s linear infinite",
+      },
     },
   },
   plugins: [],
