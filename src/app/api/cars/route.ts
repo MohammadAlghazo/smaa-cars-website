@@ -1,29 +1,30 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { z } from "zod";
 import { verifyAdminToken } from "@/lib/jwt";
-
-// ✅ Zod schema for strict validation
-const carSchema = z.object({
-  name: z.string().min(1, "اسم السيارة مطلوب").max(100),
-  brand: z.string().min(1, "الماركة مطلوبة").max(50),
-  modelYear: z.string().regex(/^\d{4}$/, "سنة الموديل يجب أن تكون 4 أرقام"),
-  mileage: z.string().min(1, "المسافة مطلوبة"),
-  price: z.string().nullable().optional(),
-  description: z.string().min(1, "الوصف مطلوب"),
-  mainImage: z.string().url("رابط الصورة الرئيسية غير صالح"),
-  images: z.array(z.string().url()).default([]),
-  features: z.array(z.string()).default([]),
-  isAvailable: z.boolean().default(true),
-});
+import { revalidatePath } from "next/cache";
+import { carSchema } from "@/lib/schemas";
 
 export async function GET(req: NextRequest) {
   try {
     const { searchParams } = new URL(req.url);
     const category = searchParams.get("category");
 
+    // Check auth to see if we should expose unavailable cars
+    let isAuthenticated = false;
+    const token = req.cookies.get("smaa_admin_auth")?.value;
+    if (token) {
+      try {
+        await verifyAdminToken(token);
+        isAuthenticated = true;
+      } catch {}
+    }
+
+    const whereClause: { brand?: string; isAvailable?: boolean } = {};
+    if (category) whereClause.brand = category;
+    if (!isAuthenticated) whereClause.isAvailable = true; // Hide unavailable from public
+
     const cars = await prisma.car.findMany({
-      where: category ? { brand: category } : undefined,
+      where: whereClause,
       orderBy: { createdAt: "desc" },
     });
 
@@ -35,16 +36,16 @@ export async function GET(req: NextRequest) {
 
 export async function POST(req: NextRequest) {
   try {
-    // ✅ Require admin JWT for write operations
     const token = req.cookies.get("smaa_admin_auth")?.value;
-    if (!token) {
-      return NextResponse.json({ error: "غير مصرح لك" }, { status: 401 });
+    if (!token) return NextResponse.json({ error: "غير مصرح لك" }, { status: 401 });
+    try {
+      await verifyAdminToken(token);
+    } catch {
+      return NextResponse.json({ error: "الجلسة منتهية" }, { status: 401 });
     }
-    await verifyAdminToken(token);
 
-    const body = await req.json();
+    const body = await req.json().catch(() => ({}));
 
-    // ✅ Validate with Zod
     const parsed = carSchema.safeParse(body);
     if (!parsed.success) {
       return NextResponse.json(
@@ -63,6 +64,7 @@ export async function POST(req: NextRequest) {
       },
     });
 
+    revalidatePath("/cars"); // ✅ Clear public cache
     return NextResponse.json(car, { status: 201 });
   } catch (error) {
     console.error("Create Car Error:", error);

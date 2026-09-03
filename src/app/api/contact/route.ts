@@ -5,7 +5,7 @@ import { z } from "zod";
 // ✅ Zod schema for strict contact validation
 const contactSchema = z.object({
   type: z.enum(["individual", "corporate", "partner", "complaint", "general"]),
-  name: z.string().min(2, "الاسم مطلوب").max(100),
+  name: z.string().max(100).optional().nullable(),
   phone: z
     .string()
     .min(9, "رقم الجوال غير صحيح")
@@ -41,7 +41,7 @@ const contactSchema = z.object({
 
 export async function POST(req: NextRequest) {
   try {
-    const body = await req.json();
+    const body = await req.json().catch(() => ({}));
 
     // ✅ Validate with Zod - prevents junk/oversized data reaching the DB
     const parsed = contactSchema.safeParse(body);
@@ -52,8 +52,16 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    const data = parsed.data;
+    
+    // DB requires 'name'. If it's missing (e.g. Corporate form), fallback to something else.
+    const resolvedName = data.name || data.applicantName || data.companyName || "بدون اسم";
+
     const newContact = await prisma.contactMessage.create({
-      data: parsed.data,
+      data: {
+        ...data,
+        name: resolvedName
+      },
     });
 
     return NextResponse.json({ success: true, data: newContact }, { status: 201 });

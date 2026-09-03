@@ -1,26 +1,24 @@
 import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { z } from "zod";
 import { verifyAdminToken } from "@/lib/jwt";
+import { revalidatePath } from "next/cache";
+import { articleSchema } from "@/lib/schemas";
 
-// ✅ Zod schema for strict article validation
-const articleSchema = z.object({
-  title: z.string().min(1, "العنوان مطلوب").max(200),
-  slug: z
-    .string()
-    .min(1, "الـ slug مطلوب")
-    .max(100)
-    .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "الـ slug يجب أن يحتوي على حروف إنجليزية صغيرة وأرقام وشرطات فقط"),
-  excerpt: z.string().min(1, "الملخص مطلوب").max(500),
-  content: z.string().min(1, "المحتوى مطلوب"),
-  coverImage: z.string().url("رابط صورة الغلاف غير صالح"),
-  author: z.string().default("SMAA CARS"),
-  isPublished: z.boolean().default(true),
-});
-
-export async function GET() {
+export async function GET(req: NextRequest) {
   try {
+    let isAuthenticated = false;
+    const token = req.cookies.get("smaa_admin_auth")?.value;
+    if (token) {
+      try {
+        await verifyAdminToken(token);
+        isAuthenticated = true;
+      } catch {}
+    }
+
+    const whereClause = isAuthenticated ? undefined : { isPublished: true };
+
     const articles = await prisma.article.findMany({
+      where: whereClause,
       orderBy: { createdAt: "desc" },
     });
     return NextResponse.json(articles);
@@ -31,16 +29,16 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   try {
-    // ✅ Require admin JWT for write operations
     const token = req.cookies.get("smaa_admin_auth")?.value;
-    if (!token) {
-      return NextResponse.json({ error: "غير مصرح لك" }, { status: 401 });
+    if (!token) return NextResponse.json({ error: "غير مصرح لك" }, { status: 401 });
+    try {
+      await verifyAdminToken(token);
+    } catch {
+      return NextResponse.json({ error: "الجلسة منتهية" }, { status: 401 });
     }
-    await verifyAdminToken(token);
 
-    const body = await req.json();
-
-    // ✅ Validate with Zod
+    const body = await req.json().catch(() => ({}));
+    
     const parsed = articleSchema.safeParse(body);
     if (!parsed.success) {
       return NextResponse.json(
@@ -53,10 +51,10 @@ export async function POST(req: NextRequest) {
       data: parsed.data,
     });
 
+    revalidatePath("/articles");
     return NextResponse.json(article, { status: 201 });
   } catch (error) {
     console.error("Create Article Error:", error);
-    // Handle unique constraint violation on slug
     return NextResponse.json(
       { error: "حدث خطأ، تأكد من أن الـ slug غير مكرر" },
       { status: 500 }

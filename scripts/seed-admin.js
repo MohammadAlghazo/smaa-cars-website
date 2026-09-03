@@ -9,7 +9,13 @@ async function main() {
   });
 
   if (!existingAdmin) {
-    const passwordHash = await bcrypt.hash('admin123', 10);
+    const password = process.env.ADMIN_PASSWORD || 'admin123';
+    
+    if (!process.env.ADMIN_PASSWORD) {
+      console.warn('⚠️ WARNING: No ADMIN_PASSWORD provided in environment variables. Using default password "admin123". PLEASE CHANGE THIS IMMEDIATELY AFTER LOGIN.');
+    }
+
+    const passwordHash = await bcrypt.hash(password, 10);
     await prisma.adminUser.create({
       data: {
         username: 'admin',

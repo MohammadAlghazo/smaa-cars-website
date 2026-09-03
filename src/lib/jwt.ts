@@ -1,8 +1,13 @@
 import { SignJWT, jwtVerify } from "jose";
 
-const JWT_SECRET = new TextEncoder().encode(
-  process.env.JWT_SECRET || "smaa-cars-fallback-secret-change-in-production-32chars"
-);
+function getJwtSecret() {
+  if (process.env.NODE_ENV === "production" && !process.env.JWT_SECRET) {
+    throw new Error("JWT_SECRET environment variable is missing in production. You must provide a secure secret.");
+  }
+  return new TextEncoder().encode(
+    process.env.JWT_SECRET || (process.env.NODE_ENV !== "production" ? "smaa-cars-fallback-secret-for-local-dev-only" : "")
+  );
+}
 
 const JWT_EXPIRY = "7d";
 
@@ -19,7 +24,7 @@ export async function signAdminToken(username: string): Promise<string> {
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
     .setExpirationTime(JWT_EXPIRY)
-    .sign(JWT_SECRET);
+    .sign(getJwtSecret());
 }
 
 /**
@@ -27,6 +32,6 @@ export async function signAdminToken(username: string): Promise<string> {
  * Throws an error if the token is invalid or expired.
  */
 export async function verifyAdminToken(token: string): Promise<AdminJWTPayload> {
-  const { payload } = await jwtVerify(token, JWT_SECRET);
+  const { payload } = await jwtVerify(token, getJwtSecret());
   return payload as unknown as AdminJWTPayload;
 }
