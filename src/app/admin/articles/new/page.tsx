@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import RichTextEditor from "@/components/admin/RichTextEditor";
 import { Loader2, ArrowRight, Save, Image as ImageIcon } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function NewArticlePage() {
   const router = useRouter();
@@ -161,7 +162,7 @@ export default function NewArticlePage() {
             
             {coverImage && (
               <div className="mb-4 rounded-lg overflow-hidden border border-gray-200 relative aspect-video">
-                <img src={coverImage} alt="Cover" className="w-full h-full object-cover" />
+                <Image src={coverImage} alt="Cover" fill className="object-cover" unoptimized />
               </div>
             )}
             

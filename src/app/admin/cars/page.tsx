@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import Link from "next/link";
+import Image from "next/image";
 import { Car, Plus, Edit } from "lucide-react";
 
 export const dynamic = "force-dynamic";
@@ -48,7 +49,9 @@ export default async function AdminCarsPage() {
                     <td className="p-4 text-gray-500">{idx + 1}</td>
                     <td className="p-4">
                       {car.mainImage ? (
-                        <img src={car.mainImage} alt={car.name} className="w-16 h-12 object-cover rounded-md border border-gray-200" />
+                        <div className="relative w-16 h-12 rounded-md border border-gray-200 overflow-hidden">
+                          <Image src={car.mainImage} alt={car.name} fill className="object-cover" unoptimized />
+                        </div>
                       ) : (
                         <div className="w-16 h-12 bg-gray-100 rounded-md flex items-center justify-center text-gray-400">
                           <Car size={20} />

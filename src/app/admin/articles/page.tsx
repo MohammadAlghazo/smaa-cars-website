@@ -1,5 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import Link from "next/link";
+import Image from "next/image";
 import { FileText, Plus, Edit } from "lucide-react";
 
 export const dynamic = "force-dynamic";
@@ -48,7 +49,9 @@ export default async function AdminArticlesPage() {
                     <td className="p-4 text-gray-500">{idx + 1}</td>
                     <td className="p-4">
                       {article.coverImage ? (
-                        <img src={article.coverImage} alt={article.title} className="w-16 h-12 object-cover rounded-md border border-gray-200" />
+                        <div className="relative w-16 h-12 rounded-md border border-gray-200 overflow-hidden">
+                          <Image src={article.coverImage} alt={article.title} fill className="object-cover" unoptimized />
+                        </div>
                       ) : (
                         <div className="w-16 h-12 bg-gray-100 rounded-md flex items-center justify-center text-gray-400">
                           <FileText size={20} />
