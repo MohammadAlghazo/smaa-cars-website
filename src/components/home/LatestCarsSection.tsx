@@ -16,13 +16,19 @@ export default async function LatestCarsSection() {
     <section className="py-20 bg-gray-50">
       <div className="container mx-auto px-4 md:px-8">
         <div className="flex flex-col md:flex-row justify-between items-end mb-12">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-smaa-blue-900 mb-4">أحدث السيارات المستوردة</h2>
-            <div className="w-16 h-1 bg-smaa-red-600 rounded-full"></div>
+          <div className="max-w-xl">
+            <div className="inline-block px-3 py-1 bg-smaa-red-50 text-smaa-red-600 text-sm font-bold rounded-full mb-4 border border-smaa-red-100">
+              السيارات المستوردة
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-smaa-blue-900 mb-3">أحدث السيارات المتاحة</h2>
+            <div className="w-16 h-1 bg-smaa-red-600 rounded-full mb-4"></div>
+            <p className="text-gray-500 leading-relaxed text-sm md:text-base">
+              نعرض لكم أحدث السيارات المستوردة المتاحة حالياً. جميع السيارات مفحوصة ومضمونة، مع كامل وثائق التخليص الجمركي والمواصفات التفصيلية لكل مركبة.
+            </p>
           </div>
           <Link 
             href="/cars" 
-            className="hidden md:flex items-center gap-2 text-smaa-blue-900 hover:text-smaa-red-600 font-bold transition-colors group"
+            className="hidden md:flex items-center gap-2 text-smaa-blue-900 hover:text-smaa-red-600 font-bold transition-colors group mt-4 md:mt-0"
           >
             عرض جميع السيارات
             <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />

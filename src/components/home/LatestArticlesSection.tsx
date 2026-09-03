@@ -16,16 +16,19 @@ export default async function LatestArticlesSection() {
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4 md:px-8">
         <div className="flex flex-col md:flex-row justify-between items-end mb-12">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-smaa-blue-900 mb-4">المركز الإعلامي</h2>
-            <div className="w-16 h-1 bg-smaa-red-600 rounded-full"></div>
-            <p className="text-gray-500 mt-4 max-w-xl">
-              اكتشف أحدث الأخبار، التحديثات، والمقالات حول عالم السيارات وخدماتنا المستمرة.
+          <div className="max-w-xl">
+            <div className="inline-block px-3 py-1 bg-smaa-blue-50 text-smaa-blue-900 text-sm font-bold rounded-full mb-4 border border-smaa-blue-100">
+              المركز الإعلامي
+            </div>
+            <h2 className="text-3xl md:text-4xl font-bold text-smaa-blue-900 mb-3">آخر الأخبار والمقالات</h2>
+            <div className="w-16 h-1 bg-smaa-red-600 rounded-full mb-4"></div>
+            <p className="text-gray-500 leading-relaxed text-sm md:text-base">
+              المركز الإعلامي لسما للسيارات يوفر لك أحدث الأخبار، نصائح الشراء، تقارير السوق، وكل ما يخص عالم السيارات المستوردة داخل وخارج المملكة.
             </p>
           </div>
           <Link 
             href="/articles" 
-            className="hidden md:flex items-center gap-2 text-smaa-blue-900 hover:text-smaa-red-600 font-bold transition-colors group"
+            className="hidden md:flex items-center gap-2 text-smaa-blue-900 hover:text-smaa-red-600 font-bold transition-colors group mt-4 md:mt-0"
           >
             عرض جميع المقالات
             <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />

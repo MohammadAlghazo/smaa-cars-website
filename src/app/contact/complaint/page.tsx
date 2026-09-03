@@ -81,10 +81,7 @@ export default function ComplaintPage() {
                 <label className={labelClass}>الإجراء المطلوب</label>
                 <input name="requiredAction" type="text" className={inputClass} placeholder="مثال: استرداد، تعديل، توضيح..." />
               </div>
-              <div className="md:col-span-2">
-                <label className={labelClass}>إرفاق المستندات أو الصور (إن وجدت)</label>
-                <input name="attachment" type="file" className="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-gray-700 file:mr-0 file:ml-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-red-50 file:text-red-600 hover:file:bg-red-100 transition-all cursor-pointer" />
-              </div>
+
             </ContactFormWrapper>
           </div>
         </div>

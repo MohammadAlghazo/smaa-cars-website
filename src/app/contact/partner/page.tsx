@@ -81,10 +81,7 @@ export default function PartnerRequestPage() {
                 <label className={labelClass}>تفاصيل المقترح</label>
                 <textarea name="proposalDetails" rows={5} className={inputClass} placeholder="اشرح لنا فكرة التعاون بالتفصيل..."></textarea>
               </div>
-              <div className="md:col-span-2">
-                <label className={labelClass}>إرفاق الملف التعريفي أو العرض (إن وجد)</label>
-                <input name="attachment" type="file" className="w-full bg-white border border-gray-200 rounded-xl px-4 py-2.5 text-gray-700 file:mr-0 file:ml-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-amber-50 file:text-amber-600 hover:file:bg-amber-100 transition-all cursor-pointer" />
-              </div>
+
             </ContactFormWrapper>
           </div>
         </div>
