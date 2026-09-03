@@ -77,3 +77,12 @@ model Article {
   author       String   @default("SMAA CARS")
   isPublished  Boolean  @default(true)
 }
+
+model AdminUser {
+  id           String   @id @default(cuid())
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  
+  username     String   @unique
+  passwordHash String
+}

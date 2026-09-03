@@ -1,11 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
+import { PrismaClient } from "@prisma/client";
+import bcrypt from "bcryptjs";
+
+const prisma = new PrismaClient();
 
 export async function POST(req: NextRequest) {
   try {
     const { username, password } = await req.json();
 
-    // Simple hardcoded auth for demo/MVP purposes
-    if (username === "admin" && password === "admin123") {
+    const admin = await prisma.adminUser.findUnique({
+      where: { username },
+    });
+
+    if (admin && (await bcrypt.compare(password, admin.passwordHash))) {
       const response = NextResponse.json({ success: true });
       
       response.cookies.set({
@@ -22,7 +29,8 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json({ error: "بيانات الدخول غير صحيحة" }, { status: 401 });
-  } catch {
-    return NextResponse.json({ error: "حدث خطأ" }, { status: 500 });
+  } catch (error) {
+    console.error("Login Error:", error);
+    return NextResponse.json({ error: "حدث خطأ في النظام" }, { status: 500 });
   }
 }

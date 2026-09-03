@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { Users, Building2, Handshake, MessageSquareWarning, MessageCircle } from "lucide-react";
+import { Users, Building2, Handshake, MessageSquareWarning, MessageCircle, Car, FileText } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 
@@ -12,9 +12,13 @@ export default async function AdminDashboard() {
     prisma.contactMessage.count({ where: { type: "partner" } }),
     prisma.contactMessage.count({ where: { type: "complaint" } }),
     prisma.contactMessage.count({ where: { type: "general" } }),
+    prisma.car.count(),
+    prisma.article.count(),
   ]);
 
   const stats = [
+    { label: "السيارات", count: counts[5], icon: <Car size={32} className="text-smaa-red-600" /> },
+    { label: "المقالات", count: counts[6], icon: <FileText size={32} className="text-smaa-blue-600" /> },
     { label: "طلبات الأفراد", count: counts[0], icon: <Users size={32} className="text-blue-500" /> },
     { label: "طلبات الشركات", count: counts[1], icon: <Building2 size={32} className="text-indigo-500" /> },
     { label: "التعاون والشراكة", count: counts[2], icon: <Handshake size={32} className="text-teal-500" /> },

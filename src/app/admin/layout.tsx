@@ -2,7 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
-import { LayoutDashboard, Users, Building2, Handshake, MessageSquareWarning, MessageCircle, LogOut, Menu, X, Car, FileText } from "lucide-react";
+import { LayoutDashboard, Users, Building2, Handshake, MessageSquareWarning, MessageCircle, LogOut, Menu, X, Car, FileText, Settings } from "lucide-react";
 import Image from "next/image";
 
 const navItems = [
@@ -12,8 +12,9 @@ const navItems = [
   { name: "التعاون والشراكة", href: "/admin/partners", icon: <Handshake size={20} /> },
   { name: "الشكاوى والاقتراحات", href: "/admin/complaints", icon: <MessageSquareWarning size={20} /> },
   { name: "تواصل معنا (عام)", href: "/admin/general", icon: <MessageCircle size={20} /> },
-  { name: "إدارة السيارات", href: "/admin/cars", icon: <Car size={20} /> },
-  { name: "إدارة المقالات", href: "/admin/articles", icon: <FileText size={20} /> },
+  { name: "السيارات", href: "/admin/cars", icon: <Car size={20} /> },
+  { name: "المقالات", href: "/admin/articles", icon: <FileText size={20} /> },
+  { name: "الإعدادات", href: "/admin/settings", icon: <Settings size={20} /> },
 ];
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
