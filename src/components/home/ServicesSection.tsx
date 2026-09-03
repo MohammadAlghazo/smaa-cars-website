@@ -1,24 +1,49 @@
 "use client";
 import { motion } from "framer-motion";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, User, Building2, Handshake, MessageSquareWarning, MessageCircle } from "lucide-react";
 import Link from "next/link";
 
 const services = [
   {
-    title: "استيراد السيارات",
-    desc: "توفير واستيراد السيارات من مختلف دول العالم وفق طلب العميل والخيارات المتاحة لدى الموردين.",
-    link: "/services"
+    icon: User,
+    iconBg: "bg-smaa-blue-50 text-smaa-blue-900",
+    title: "طلب الأفراد",
+    desc: "استيراد أو شراء سيارة لاستخدامك الشخصي بمواصفاتك وضمن ميزانيتك. نبحث لك من أسواق العالم.",
+    link: "/contact/individual",
+    cta: "تقديم طلبك",
   },
   {
-    title: "بيع السيارات داخل المملكة",
-    desc: "توفير وبيع السيارات للأفراد والشركات داخل المملكة العربية السعودية، بحسب السيارات والعروض المتاحة.",
-    link: "/services"
+    icon: Building2,
+    iconBg: "bg-indigo-50 text-indigo-700",
+    title: "طلب الشركات",
+    desc: "حلول توريد مخصصة للشركات والمعارض ومكاتب التأجير بكميات مرنة وأسعار تنافسية.",
+    link: "/contact/corporate",
+    cta: "طلب عرض أسعار",
   },
   {
-    title: "توريد سيارات الشركات",
-    desc: "تقديم عروض توريد مخصصة للشركات، المعارض، مكاتب التأجير وقطاعات الأعمال، وفق الكميات والمواصفات المطلوبة.",
-    link: "/services"
-  }
+    icon: Handshake,
+    iconBg: "bg-amber-50 text-amber-600",
+    title: "شراكة وتعاون",
+    desc: "نرحب بالشراكات الاستراتيجية مع الموردين والجهات المتخصصة في قطاع السيارات.",
+    link: "/contact/partner",
+    cta: "اقتراح شراكة",
+  },
+  {
+    icon: MessageSquareWarning,
+    iconBg: "bg-red-50 text-red-500",
+    title: "شكاوى واقتراحات",
+    desc: "نأخذ ملاحظاتكم وشكاواكم بجدية تامة لتحسين خدماتنا ورفع مستوى رضا العملاء.",
+    link: "/contact/complaint",
+    cta: "رفع شكوى",
+  },
+  {
+    icon: MessageCircle,
+    iconBg: "bg-green-50 text-green-600",
+    title: "تواصل عام",
+    desc: "أي استفسار أو استيضاح حول خدماتنا، فريقنا مستعد للإجابة عليك في أقرب وقت.",
+    link: "/contact/general",
+    cta: "أرسل رسالة",
+  },
 ];
 
 export default function ServicesSection() {
@@ -33,36 +58,45 @@ export default function ServicesSection() {
             viewport={{ once: true }}
             className="text-4xl font-bold text-smaa-blue-900 mb-4"
           >
-            خدماتنا
+            خدماتنا وطرق التواصل
           </motion.h2>
-          <div className="w-20 h-1 bg-smaa-red-600 mx-auto rounded-full mb-8"></div>
+          <div className="w-20 h-1 bg-smaa-red-600 mx-auto rounded-full mb-6"></div>
+          <p className="text-gray-500 max-w-xl mx-auto">
+            اختر الخدمة المناسبة لاحتياجك وتواصل مع فريقنا المتخصص مباشرة
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {services.map((service, idx) => (
-            <motion.div 
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="bg-gray-50 border border-gray-200 rounded-2xl p-8 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group flex flex-col h-full"
-            >
-              <h3 className="text-2xl font-bold text-smaa-blue-900 mb-4 group-hover:text-smaa-red-600 transition-colors">
-                {service.title}
-              </h3>
-              <p className="text-gray-600 leading-relaxed mb-8 flex-grow">
-                {service.desc}
-              </p>
-              <Link 
-                href={service.link}
-                className="inline-flex items-center gap-2 text-smaa-blue-900 font-bold group-hover:text-smaa-red-600 transition-colors mt-auto"
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {services.map((service, idx) => {
+            const Icon = service.icon;
+            return (
+              <motion.div 
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: idx * 0.08 }}
+                className="bg-gray-50 border border-gray-100 rounded-3xl p-8 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group flex flex-col h-full"
               >
-                تفاصيل الخدمة
-                <ArrowLeft size={18} className="group-hover:-translate-x-2 transition-transform" />
-              </Link>
-            </motion.div>
-          ))}
+                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center mb-6 transition-all ${service.iconBg}`}>
+                  <Icon size={26} />
+                </div>
+                <h3 className="text-xl font-bold text-smaa-blue-900 mb-3 group-hover:text-smaa-red-600 transition-colors">
+                  {service.title}
+                </h3>
+                <p className="text-gray-600 leading-relaxed mb-8 flex-grow text-sm">
+                  {service.desc}
+                </p>
+                <Link 
+                  href={service.link}
+                  className="inline-flex items-center gap-2 text-smaa-blue-900 font-bold group-hover:text-smaa-red-600 transition-colors mt-auto"
+                >
+                  {service.cta}
+                  <ArrowLeft size={18} className="group-hover:-translate-x-2 transition-transform" />
+                </Link>
+              </motion.div>
+            );
+          })}
         </div>
 
       </div>

@@ -41,17 +41,23 @@ export default function HeroSection() {
               
               <div className="flex flex-col sm:flex-row flex-wrap gap-4 mt-8 w-full">
                 <Link 
-                  href="/contact" 
+                  href="/contact/individual" 
                   className="bg-smaa-red-600 hover:bg-smaa-red-500 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-lg hover:shadow-red-600/30 text-center flex items-center justify-center gap-2 hover:-translate-y-1 active:scale-95"
                 >
                   <ShieldCheck size={24} />
                   اطلب سيارتك الآن
                 </Link>
                 <Link 
-                  href="/cars" 
+                  href="/contact/corporate" 
+                  className="bg-smaa-blue-900 hover:bg-smaa-blue-800 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-sm text-center flex items-center justify-center hover:-translate-y-1 active:scale-95"
+                >
+                  اطلب عرضًا للشركات
+                </Link>
+                <Link 
+                  href="/contact" 
                   className="bg-white border-2 border-gray-200 hover:border-smaa-blue-900 text-smaa-blue-900 px-8 py-4 rounded-xl font-bold text-lg transition-all shadow-sm text-center flex items-center justify-center hover:-translate-y-1 active:scale-95"
                 >
-                  تصفح السيارات
+                  تواصل معنا
                 </Link>
               </div>
 
