@@ -41,12 +41,12 @@ export default function Navbar() {
         </Link>
         
         {/* Desktop Menu */}
-        <div className="hidden lg:flex items-center gap-2 xl:gap-6">
+        <div className="hidden lg:flex items-center gap-1 xl:gap-4 flex-wrap lg:flex-nowrap">
           {navLinks.map((link, idx) => (
             <Link 
               key={idx} 
               href={link.href} 
-              className={`font-medium transition-colors px-3 py-2 rounded-lg ${
+              className={`whitespace-nowrap font-medium transition-colors px-2 xl:px-3 py-2 text-sm xl:text-base rounded-lg ${
                 pathname === link.href 
                   ? "text-smaa-red-600 font-bold bg-smaa-red-50" 
                   : "text-smaa-blue-900 hover:text-smaa-red-500 hover:bg-gray-50"
@@ -58,7 +58,7 @@ export default function Navbar() {
 
           {/* Contact Dropdown Desktop */}
           <div className="relative group">
-            <button className={`font-medium transition-colors px-3 py-2 rounded-lg flex items-center gap-1 ${
+            <button className={`whitespace-nowrap font-medium transition-colors px-2 xl:px-3 py-2 text-sm xl:text-base rounded-lg flex items-center gap-1 ${
                 pathname.startsWith("/contact")
                   ? "text-smaa-red-600 font-bold bg-smaa-red-50" 
                   : "text-smaa-blue-900 hover:text-smaa-red-500 hover:bg-gray-50"
@@ -83,7 +83,7 @@ export default function Navbar() {
             </div>
           </div>
 
-          <Link href="/contact/individual" className="bg-smaa-red-600 hover:bg-smaa-red-500 text-white px-6 py-2.5 rounded-full font-bold transition-all shadow-md text-sm xl:text-base mr-4">
+          <Link href="/contact/individual" className="whitespace-nowrap bg-smaa-red-600 hover:bg-smaa-red-500 text-white px-5 py-2 xl:px-6 xl:py-2.5 rounded-full font-bold transition-all shadow-md text-sm xl:text-base mr-2 xl:mr-4">
             اطلب سيارتك
           </Link>
         </div>

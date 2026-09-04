@@ -37,7 +37,7 @@ export default function HeroSection() {
                 <div className="w-8 h-px bg-smaa-red-600 lg:hidden"></div>
               </div>
 
-              <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold mb-4 md:mb-6 leading-[1.4] md:leading-[1.6] text-white drop-shadow-sm px-2 md:px-0">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[3.5rem] font-extrabold mb-4 md:mb-6 leading-[1.4] md:leading-[1.5] text-white drop-shadow-sm px-2 md:px-0">
                 استورد سيارة أحلامك
                 <br />
                 بمستوى جديد من الفخامة
