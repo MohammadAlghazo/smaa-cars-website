@@ -1,75 +1,84 @@
 "use client";
 import { motion } from "framer-motion";
-import { Search, Map, ShieldCheck, Clock } from "lucide-react";
+import { Search, Map, ShieldCheck, Clock, ArrowLeft } from "lucide-react";
+import Link from "next/link";
 
 export default function FeaturesGrid() {
   const features = [
     {
-      icon: <Search className="text-smaa-red-600" size={32} />,
+      icon: <Search className="text-smaa-red-600" size={28} />,
       title: "خيارات لا محدودة",
-      desc: "نبحث في الأسواق العالمية لنجد السيارة التي تطابق مواصفاتك الدقيقة."
+      desc: "نبحث في الأسواق العالمية لنجد السيارة التي تطابق مواصفاتك الدقيقة تماماً."
     },
     {
-      icon: <ShieldCheck className="text-smaa-red-600" size={32} />,
+      icon: <ShieldCheck className="text-smaa-red-600" size={28} />,
       title: "فحص شامل وموثوق",
-      desc: "نضمن سلامة السيارة ميكانيكياً وكهربائياً قبل إتمام عملية الشراء."
+      desc: "نضمن سلامة السيارة ميكانيكياً وكهربائياً قبل إتمام عملية الشراء لضمان الجودة."
     },
     {
-      icon: <Map className="text-smaa-red-600" size={32} />,
+      icon: <Map className="text-smaa-red-600" size={28} />,
       title: "تخليص جمركي متكامل",
-      desc: "نقوم بجميع الإجراءات الجمركية ونقل الملكية لراحتك التامة."
+      desc: "نقوم بجميع الإجراءات الجمركية ونقل الملكية لراحتك التامة وبأقل جهد منك."
     },
     {
-      icon: <Clock className="text-smaa-red-600" size={32} />,
+      icon: <Clock className="text-smaa-red-600" size={28} />,
       title: "سرعة في الإنجاز",
-      desc: "نلتزم بتوريد سيارتك في أسرع وقت ممكن وفق أعلى معايير الجودة."
+      desc: "نلتزم بتوريد سيارتك في أسرع وقت ممكن وفق أعلى معايير الجودة والمهنية."
     }
   ];
 
   return (
-    <section className="py-24 bg-white relative">
+    <section className="py-24 bg-white relative border-b border-gray-100">
       <div className="container mx-auto px-4 md:px-8">
         
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+        <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+          <div className="max-w-2xl">
+            <motion.h2 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-3xl md:text-5xl font-extrabold text-smaa-blue-900 mb-6 tracking-tight"
+            >
+              حلول متكاملة <span className="text-smaa-red-600">وحصرية</span>
+            </motion.h2>
+            <motion.p 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="text-gray-600 leading-relaxed text-lg font-light"
+            >
+              في سما التوريد لخدمات السيارات نقدّم حلولًا متكاملة لاستيراد وتوريد وبيع السيارات للأفراد والشركات داخل المملكة، عبر شبكة واسعة من الموردين العالميين.
+            </motion.p>
+          </div>
+          
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="text-3xl md:text-4xl font-bold text-smaa-blue-900 mb-6"
+            transition={{ delay: 0.3 }}
           >
-            حلول متكاملة لاستيراد وبيع السيارات
-          </motion.h2>
-          <motion.div 
-            initial={{ opacity: 0, scale: 0 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="w-16 h-1 bg-smaa-red-600 mx-auto rounded-full mb-8"
-          ></motion.div>
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-gray-600 leading-relaxed text-lg"
-          >
-            في سما التوريد لخدمات السيارات نقدّم حلولًا متكاملة لاستيراد وتوريد وبيع السيارات للأفراد والشركات داخل المملكة العربية السعودية، من خلال شبكة من الموردين ومصادر التوريد من مختلف دول العالم.
-          </motion.p>
+            <Link href="/services" className="group inline-flex items-center gap-2 text-smaa-blue-900 font-bold hover:text-smaa-red-600 transition-colors">
+              عرض كل الخدمات
+              <ArrowLeft size={20} className="group-hover:-translate-x-2 transition-transform" />
+            </Link>
+          </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 divide-y md:divide-y-0 md:divide-x md:divide-x-reverse border border-gray-100 rounded-sm overflow-hidden shadow-sm">
           {features.map((feat, idx) => (
             <motion.div 
               key={idx}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              className="bg-gray-50 p-8 rounded-3xl border border-gray-100 hover:shadow-xl hover:-translate-y-2 transition-all duration-300 group"
+              className="bg-white p-10 hover:bg-gray-50 transition-colors duration-300 group"
             >
-              <div className="w-16 h-16 bg-white rounded-2xl shadow-sm flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <div className="w-14 h-14 bg-smaa-red-50 rounded-lg flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-smaa-red-100 transition-all duration-300">
                 {feat.icon}
               </div>
-              <h3 className="text-xl font-bold text-smaa-blue-900 mb-3">{feat.title}</h3>
+              <h3 className="text-xl font-bold text-smaa-blue-900 mb-4">{feat.title}</h3>
               <p className="text-gray-600 leading-relaxed text-sm">
                 {feat.desc}
               </p>

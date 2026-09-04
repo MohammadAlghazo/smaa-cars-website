@@ -2,6 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    line-height: 1.5 !important;
+  }
+  p {
+    line-height: 1.8 !important;
+  }
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

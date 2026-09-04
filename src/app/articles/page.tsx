@@ -3,7 +3,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, CalendarDays, User } from "lucide-react";
 
-// ISR
 export const revalidate = 3600;
 
 export default async function ArticlesPage() {
@@ -16,58 +15,76 @@ export default async function ArticlesPage() {
     <div className="pt-24 pb-20 bg-gray-50 min-h-screen">
       
       {/* Header */}
-      <div className="bg-smaa-blue-900 text-white py-16 mb-12">
-        <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">المركز الإعلامي</h1>
-          <p className="text-gray-300 text-lg max-w-2xl mx-auto">
-            أحدث الأخبار، المقالات، والنصائح حول استيراد السيارات وأخبار عالم المحركات.
+      <section className="bg-smaa-blue-900 text-white pt-24 pb-20 relative overflow-hidden mb-12">
+        {/* Background Overlay */}
+        <div className="absolute inset-0 z-0">
+          <Image 
+            src="/hero-bg.png" 
+            alt="Media Center SMAA Cars" 
+            fill 
+            className="object-cover object-center opacity-20 grayscale"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-smaa-blue-900 via-smaa-blue-900/90 to-transparent"></div>
+        </div>
+        
+        <div className="container mx-auto px-4 md:px-8 relative z-10 max-w-4xl text-center">
+          <div className="inline-flex items-center justify-center gap-3 mb-6">
+            <div className="w-8 h-px bg-smaa-red-600"></div>
+            <span className="text-smaa-red-400 font-bold tracking-wider uppercase text-sm">الأخبار والمقالات</span>
+            <div className="w-8 h-px bg-smaa-red-600"></div>
+          </div>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 tracking-tight drop-shadow-sm">
+            المركز <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">الإعلامي</span>
+          </h1>
+          <p className="text-lg text-gray-300 font-light max-w-2xl mx-auto">
+            أحدث الأخبار، المقالات المتخصصة، والنصائح الاحترافية حول استيراد السيارات وأخبار عالم المحركات.
           </p>
         </div>
-      </div>
+      </section>
 
       <div className="container mx-auto px-4 md:px-8">
         
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {articles.map((article) => (
-            <article key={article.id} className="bg-white rounded-3xl shadow-sm hover:shadow-xl border border-gray-100 overflow-hidden transition-all group flex flex-col h-full">
+            <article key={article.id} className="bg-white rounded-sm border border-gray-100 overflow-hidden hover:shadow-lg hover:border-gray-200 transition-all group flex flex-col h-full">
               
-              <Link href={`/articles/${article.slug}`} className="relative aspect-[16/10] overflow-hidden bg-gray-100 block">
+              <Link href={`/articles/${article.slug}`} className="relative aspect-[16/10] overflow-hidden bg-gray-50 block">
                 <Image 
                   src={article.coverImage || "/placeholder-article.jpg"} 
                   alt={article.title} 
                   fill 
-                  className="object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="object-cover group-hover:scale-105 transition-transform duration-700 ease-in-out"
                 />
               </Link>
 
               <div className="p-8 flex-1 flex flex-col">
-                <div className="flex items-center gap-4 text-xs text-gray-400 mb-4">
-                  <div className="flex items-center gap-1.5">
-                    <CalendarDays size={14} />
+                <div className="flex items-center gap-4 text-xs text-gray-400 mb-5 pb-5 border-b border-gray-50 uppercase tracking-wide">
+                  <div className="flex items-center gap-2">
+                    <CalendarDays size={14} className="text-smaa-red-600" />
                     <span>{article.createdAt.toLocaleDateString("ar-SA")}</span>
                   </div>
-                  <div className="flex items-center gap-1.5">
-                    <User size={14} />
+                  <div className="flex items-center gap-2">
+                    <User size={14} className="text-smaa-red-600" />
                     <span>{article.author}</span>
                   </div>
                 </div>
 
                 <Link href={`/articles/${article.slug}`}>
-                  <h3 className="text-2xl font-bold text-smaa-blue-900 mb-4 line-clamp-2 hover:text-smaa-red-600 transition-colors">
+                  <h3 className="text-xl font-bold text-gray-900 mb-4 line-clamp-2 hover:text-smaa-blue-900 transition-colors leading-normal">
                     {article.title}
                   </h3>
                 </Link>
                 
-                <p className="text-gray-600 mb-8 line-clamp-3 leading-relaxed">
+                <p className="text-gray-500 mb-8 line-clamp-3 font-light text-sm flex-1">
                   {article.excerpt}
                 </p>
 
                 <Link 
                   href={`/articles/${article.slug}`} 
-                  className="mt-auto inline-flex items-center gap-2 text-smaa-red-600 font-bold hover:text-smaa-red-500 transition-colors group/link w-fit"
+                  className="mt-auto inline-flex items-center gap-2 text-smaa-blue-900 font-bold hover:text-smaa-red-600 transition-colors group/link w-fit text-sm"
                 >
-                  إقرأ المزيد
-                  <ArrowLeft size={18} className="group-hover/link:-translate-x-2 transition-transform" />
+                  إقرأ التفاصيل
+                  <ArrowLeft size={16} className="group-hover/link:-translate-x-2 transition-transform" />
                 </Link>
               </div>
 
@@ -75,9 +92,12 @@ export default async function ArticlesPage() {
           ))}
 
           {articles.length === 0 && (
-            <div className="col-span-full py-20 text-center">
-              <h3 className="text-2xl font-bold text-gray-700 mb-2">لا يوجد مقالات منشورة حالياً</h3>
-              <p className="text-gray-500">سيتم إضافة المقالات والأخبار قريباً، يرجى العودة لاحقاً.</p>
+            <div className="col-span-full py-24 text-center bg-white rounded-sm border border-gray-100">
+               <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-6 text-gray-300">
+                <CalendarDays size={32} />
+              </div>
+              <h3 className="text-2xl font-bold text-smaa-blue-900 mb-3">لا يوجد مقالات منشورة حالياً</h3>
+              <p className="text-gray-500 font-light">سيتم إضافة المحتوى الحصري والأخبار قريباً، يرجى العودة لاحقاً.</p>
             </div>
           )}
         </div>
