@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import type { Metadata } from "next";
 import { Alexandria } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
