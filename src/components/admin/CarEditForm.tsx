@@ -7,7 +7,7 @@ import { Loader2, ArrowRight, Save, Image as ImageIcon } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function CarEditForm({ car }: { car: any }) {
+export default function CarEditForm({ car }: { car: { id: string, name: string, brand: string, modelYear: string, mileage: string, price: string | null, description: string, mainImage: string, isAvailable: boolean } }) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
