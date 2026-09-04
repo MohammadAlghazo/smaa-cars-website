@@ -48,8 +48,8 @@ export default async function ArticlesPage({
             <span className="text-smaa-red-400 font-bold tracking-wider uppercase text-sm">الأخبار والمقالات</span>
             <div className="w-8 h-px bg-smaa-red-600"></div>
           </div>
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 tracking-tight drop-shadow-sm">
-            المركز <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">الإعلامي</span>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold mb-6 leading-normal tracking-tight drop-shadow-sm text-white">
+            المركز الإعلامي
           </h1>
           <p className="text-lg text-gray-300 font-light max-w-2xl mx-auto">
             أحدث الأخبار، المقالات المتخصصة، والنصائح الاحترافية حول استيراد السيارات وأخبار عالم المحركات.
