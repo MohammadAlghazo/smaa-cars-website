@@ -2,14 +2,29 @@ import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, CalendarDays, User } from "lucide-react";
+import Pagination from "@/components/ui/Pagination";
 
 export const revalidate = 3600;
 
-export default async function ArticlesPage() {
-  const articles = await prisma.article.findMany({
-    where: { isPublished: true },
-    orderBy: { createdAt: "desc" },
-  });
+export default async function ArticlesPage({
+  searchParams,
+}: {
+  searchParams: { page?: string };
+}) {
+  const page = Number(searchParams?.page) || 1;
+  const pageSize = 12;
+
+  const [articles, totalCount] = await Promise.all([
+    prisma.article.findMany({
+      where: { isPublished: true },
+      orderBy: { createdAt: "desc" },
+      skip: (page - 1) * pageSize,
+      take: pageSize,
+    }),
+    prisma.article.count({ where: { isPublished: true } }),
+  ]);
+
+  const totalPages = Math.ceil(totalCount / pageSize);
 
   return (
     <div className="pt-24 pb-20 bg-gray-50 min-h-screen">
@@ -101,6 +116,8 @@ export default async function ArticlesPage() {
             </div>
           )}
         </div>
+
+        <Pagination totalPages={totalPages} currentPage={page} />
 
       </div>
     </div>

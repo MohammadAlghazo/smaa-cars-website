@@ -5,52 +5,56 @@ import { ArrowRight, MessageSquareWarning, Clock, ShieldCheck } from "lucide-rea
 
 export default function ComplaintPage() {
   return (
-    <div className="min-h-screen bg-gray-50 pt-28 pb-20">
+    <div className="min-h-screen bg-gray-50 pt-32 pb-24">
       <div className="container mx-auto px-4 md:px-8 max-w-5xl">
-        <div className="flex items-center gap-2 text-sm text-gray-500 mb-8">
-          <Link href="/contact" className="hover:text-smaa-blue-900 transition-colors flex items-center gap-1">
+        <div className="flex items-center gap-2 text-sm text-gray-500 mb-10">
+          <Link href="/contact" className="hover:text-smaa-red-600 transition-colors flex items-center gap-1 font-bold">
             <ArrowRight size={16} />
             التواصل والطلبات
           </Link>
           <span>/</span>
-          <span className="text-smaa-blue-900 font-semibold">شكاوى واقتراحات</span>
+          <span className="text-smaa-blue-900 font-bold">شكاوى واقتراحات</span>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-1 space-y-6">
+          <div className="lg:col-span-1 space-y-8">
             <div>
-              <div className="w-14 h-14 bg-red-500 rounded-2xl flex items-center justify-center mb-4">
-                <MessageSquareWarning className="text-white" size={28} />
+              <div className="w-14 h-14 bg-smaa-red-600 rounded-sm flex items-center justify-center mb-6 shadow-sm">
+                <MessageSquareWarning className="text-white" size={28} strokeWidth={1.5} />
               </div>
-              <h1 className="text-3xl font-extrabold text-smaa-blue-900 mb-3">شكاوى واقتراحات</h1>
-              <p className="text-gray-600 leading-relaxed">
-                رأيكم يساهم في تطوير خدماتنا. نحرص على تقديم تجربة مهنية وموثوقة، ونرحب باستقبال الشكاوى والملاحظات والاقتراحات ودراستها بعناية. جميع الطلبات تُعالج بسرية تامة.
+              <h1 className="text-3xl font-extrabold text-smaa-blue-900 mb-4 tracking-tight">شكاوى واقتراحات</h1>
+              <p className="text-gray-600 leading-relaxed font-light text-sm">
+                رأيكم هو البوصلة التي توجه خدماتنا. نحرص على تقديم تجربة مهنية وموثوقة، ونرحب باستقبال أي شكاوى أو اقتراحات لتطوير العمل.
               </p>
             </div>
-            <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm space-y-4">
-              <h3 className="font-bold text-smaa-blue-900 text-lg">التزاماتنا</h3>
+            
+            <div className="bg-white rounded-sm p-8 border border-gray-100 shadow-sm space-y-5">
+              <h3 className="font-bold text-smaa-blue-900 text-lg">التزاماتنا تجاهكم</h3>
               {[
-                { icon: Clock, text: "الرد خلال 24 ساعة عمل" },
-                { icon: ShieldCheck, text: "معالجة جادة لكل شكوى" },
-                { icon: ShieldCheck, text: "سرية تامة لبياناتك" },
+                { icon: Clock, text: "الرد المبدئي خلال 24 ساعة عمل" },
+                { icon: ShieldCheck, text: "معالجة جادة وموضوعية لكل شكوى" },
+                { icon: ShieldCheck, text: "سرية تامة لبياناتك الشخصية" },
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-3">
-                  <item.icon className="text-smaa-red-600 mt-0.5 flex-shrink-0" size={20} />
-                  <p className="text-sm text-gray-600">{item.text}</p>
+                  <item.icon className="text-smaa-red-600 mt-0.5 flex-shrink-0" size={18} strokeWidth={1.5} />
+                  <p className="text-sm font-light text-gray-600">{item.text}</p>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="lg:col-span-2 bg-white rounded-3xl p-8 shadow-sm border border-gray-100">
-            <h2 className="text-xl font-bold text-smaa-blue-900 mb-6 pb-4 border-b border-gray-100">تفاصيل الشكوى أو الاقتراح</h2>
+          <div className="lg:col-span-2">
             <ContactFormWrapper type="complaint" buttonText="إرسال الشكوى أو الاقتراح">
+              <div className="md:col-span-2 mb-4 pb-4 border-b border-gray-100">
+                <h2 className="text-xl font-bold text-smaa-blue-900">تفاصيل الرسالة</h2>
+              </div>
+              
               <div className="md:col-span-2">
                 <label className={labelClass}>نوع الطلب</label>
                 <select name="complaintType" className={inputClass}>
                   <option value="شكوى">شكوى</option>
-                  <option value="اقتراح">اقتراح</option>
-                  <option value="ملاحظة">ملاحظة</option>
+                  <option value="اقتراح">اقتراح تطويري</option>
+                  <option value="ملاحظة">ملاحظة عامة</option>
                 </select>
               </div>
               <div>
@@ -70,18 +74,17 @@ export default function ComplaintPage() {
                 <input name="orderNumber" type="text" className={inputClass} placeholder="اختياري" />
               </div>
               <div className="md:col-span-2">
-                <label className={labelClass}>عنوان الطلب</label>
+                <label className={labelClass}>عنوان الرسالة</label>
                 <input name="complaintTitle" type="text" className={inputClass} placeholder="ملخص قصير لموضوع الشكوى أو الاقتراح" />
               </div>
               <div className="md:col-span-2">
                 <label className={labelClass}>التفاصيل</label>
-                <textarea name="notes" rows={5} className={inputClass} placeholder="اشرح تجربتك أو اقتراحك بالتفصيل..."></textarea>
+                <textarea name="notes" rows={5} className={inputClass} placeholder="اشرح تجربتك أو اقتراحك بالتفصيل الكامل..."></textarea>
               </div>
               <div className="md:col-span-2">
-                <label className={labelClass}>الإجراء المطلوب</label>
-                <input name="requiredAction" type="text" className={inputClass} placeholder="مثال: استرداد، تعديل، توضيح..." />
+                <label className={labelClass}>الإجراء أو الحل المتوقع</label>
+                <input name="requiredAction" type="text" className={inputClass} placeholder="مثال: استرداد، تعديل إجراء، توضيح مشكلة..." />
               </div>
-
             </ContactFormWrapper>
           </div>
         </div>

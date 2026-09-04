@@ -2,14 +2,29 @@ import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import Image from "next/image";
 import { Search, Filter, ArrowLeft, Gauge, CalendarDays, CheckCircle2 } from "lucide-react";
+import Pagination from "@/components/ui/Pagination";
 
 export const revalidate = 3600;
 
-export default async function CarsPage() {
-  const cars = await prisma.car.findMany({
-    where: { isAvailable: true },
-    orderBy: { createdAt: "desc" },
-  });
+export default async function CarsPage({
+  searchParams,
+}: {
+  searchParams: { page?: string };
+}) {
+  const page = Number(searchParams?.page) || 1;
+  const pageSize = 12;
+
+  const [cars, totalCount] = await Promise.all([
+    prisma.car.findMany({
+      where: { isAvailable: true },
+      orderBy: { createdAt: "desc" },
+      skip: (page - 1) * pageSize,
+      take: pageSize,
+    }),
+    prisma.car.count({ where: { isAvailable: true } }),
+  ]);
+
+  const totalPages = Math.ceil(totalCount / pageSize);
 
   return (
     <div className="pt-24 pb-20 bg-gray-50 min-h-screen">
@@ -127,6 +142,8 @@ export default async function CarsPage() {
             </div>
           )}
         </div>
+
+        <Pagination totalPages={totalPages} currentPage={page} />
 
       </div>
     </div>

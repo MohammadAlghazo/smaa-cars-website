@@ -35,9 +35,9 @@ export default async function LatestArticlesSection() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="flex overflow-x-auto snap-x snap-mandatory pb-8 -mx-4 px-4 gap-4 md:grid md:grid-cols-2 lg:grid-cols-4 md:gap-6 md:overflow-visible md:snap-none md:mx-0 md:px-0 md:pb-0 hide-scrollbar">
           {articles.map((article) => (
-            <Link href={`/articles/${article.slug}`} key={article.id} className="group flex flex-col h-full">
+            <Link href={`/articles/${article.slug}`} key={article.id} className="min-w-[85vw] sm:min-w-[320px] md:min-w-0 snap-start shrink-0 group flex flex-col h-full">
               <div className="relative aspect-[4/3] rounded-2xl overflow-hidden mb-4 bg-gray-100 shadow-sm">
                 <Image 
                   src={article.coverImage || "/placeholder-article.jpg"} 

@@ -3,8 +3,8 @@ import { writeFile, mkdir } from "fs/promises";
 import path from "path";
 import { existsSync } from "fs";
 import { verifyAdminToken } from "@/lib/jwt";
+import sharp from "sharp";
 
-// ✅ Strict whitelist of allowed MIME types and extensions
 const ALLOWED_MIME_TYPES = [
   "image/jpeg",
   "image/jpg",
@@ -13,12 +13,11 @@ const ALLOWED_MIME_TYPES = [
   "image/gif",
 ];
 
-const MAX_FILE_SIZE_MB = 5;
+const MAX_FILE_SIZE_MB = 10;
 const MAX_FILE_SIZE_BYTES = MAX_FILE_SIZE_MB * 1024 * 1024;
 
 export async function POST(req: NextRequest) {
   try {
-    // ✅ Only authenticated admins can upload files
     const token = req.cookies.get("smaa_admin_auth")?.value;
     if (!token) {
       return NextResponse.json({ error: "غير مصرح لك" }, { status: 401 });
@@ -36,7 +35,6 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ error: "لا يوجد ملف" }, { status: 400 });
     }
 
-    // ✅ Validate MIME type (server-side, not client-declared)
     if (!ALLOWED_MIME_TYPES.includes(file.type)) {
       return NextResponse.json(
         { error: `نوع الملف غير مسموح به. الأنواع المسموح بها: JPEG, PNG, WebP, GIF` },
@@ -44,7 +42,6 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    // ✅ Validate file size
     if (file.size > MAX_FILE_SIZE_BYTES) {
       return NextResponse.json(
         { error: `حجم الملف يتجاوز الحد المسموح به (${MAX_FILE_SIZE_MB}MB)` },
@@ -52,15 +49,20 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const buffer = Buffer.from(await file.arrayBuffer());
+    const arrayBuffer = await file.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
 
-    // ✅ Sanitize filename: keep only safe characters + force image extension from MIME
-    const ext = file.type.split("/")[1].replace("jpeg", "jpg");
-    const safeName = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${ext}`;
+    
+    const optimizedBuffer = await sharp(buffer)
+      .resize(1920, 1920, { 
+        fit: "inside", 
+        withoutEnlargement: true 
+      }) 
+      .webp({ quality: 80 }) 
+      .toBuffer();
 
-    // ⚠️ NOTE FOR PRODUCTION: Replace this local storage with Cloudinary or Vercel Blob.
-    // Example: const result = await cloudinary.uploader.upload(buffer, { folder: 'smaa-cars' });
-    // return NextResponse.json({ url: result.secure_url });
+    const safeName = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.webp`;
+
     const uploadDir = path.join(process.cwd(), "public", "uploads");
 
     if (!existsSync(uploadDir)) {
@@ -68,11 +70,11 @@ export async function POST(req: NextRequest) {
     }
 
     const filepath = path.join(uploadDir, safeName);
-    await writeFile(filepath, buffer);
+    await writeFile(filepath, optimizedBuffer);
 
     return NextResponse.json({ url: `/uploads/${safeName}` });
   } catch (error) {
     console.error("Upload error:", error);
-    return NextResponse.json({ error: "حدث خطأ أثناء رفع الصورة" }, { status: 500 });
+    return NextResponse.json({ error: "حدث خطأ أثناء معالجة ورفع الصورة" }, { status: 500 });
   }
 }

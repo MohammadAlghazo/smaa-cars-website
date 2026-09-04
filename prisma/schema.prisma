@@ -3,36 +3,36 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "mysql"
+  url      = env("DATABASE_URL")
 }
 
 model ContactMessage {
   id        String   @id @default(cuid())
   createdAt DateTime @default(now())
 
-  // Common Fields
-  type      String   // individual, corporate, partner, complaint, general
+  
+  type      String   
   name      String
   phone     String
   email     String?
   city      String?
 
-  // Individual & Corporate Car Requests
+  
   carType      String?
   carModel     String?
   carCategory  String?
   carColor     String?
   budget       String?
-  notes        String? // General notes or message
+  notes        String? 
 
-  // Corporate Specific
+  
   companyName  String?
   managerName  String?
   activityType String?
   carQuantity  String?
 
-  // Partnership Specific
+  
   applicantName     String?
   jobTitle          String?
   country           String?
@@ -40,8 +40,8 @@ model ContactMessage {
   companyBio        String?
   proposalDetails   String?
 
-  // Complaint Specific
-  complaintType   String? // شكوى، اقتراح، ملاحظة
+  
+  complaintType   String? 
   orderNumber     String?
   complaintTitle  String?
   requiredAction  String?
@@ -57,10 +57,10 @@ model Car {
   modelYear    String
   mileage      String
   price        String?
-  description  String   // Rich text
+  description  String   
   mainImage    String
-  images       String   // JSON array of strings
-  features     String   // Rich text or JSON array
+  images       String   
+  features     String   
   isAvailable  Boolean  @default(true)
 }
 
@@ -72,7 +72,7 @@ model Article {
   title        String
   slug         String   @unique
   excerpt      String
-  content      String   // Rich text
+  content      String   
   coverImage   String
   author       String   @default("SMAA CARS")
   isPublished  Boolean  @default(true)

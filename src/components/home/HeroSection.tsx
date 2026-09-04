@@ -23,37 +23,38 @@ export default function HeroSection() {
         <div className="absolute inset-0 bg-gradient-to-t from-smaa-blue-900/80 via-transparent to-transparent z-10"></div>
       </div>
 
-      <div className="container mx-auto px-4 md:px-8 z-20 relative pt-20">
+      <div className="container mx-auto px-6 md:px-8 z-20 relative pt-24 pb-12">
         <div className="flex flex-col lg:flex-row items-center">
           
           {/* Text Content */}
-          <div className="w-full lg:w-[65%] text-white">
+          <div className="w-full lg:w-[65%] text-white text-center lg:text-right">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, ease: "easeOut" }}
             >
-              <div className="inline-flex items-center gap-3 mb-6">
-                <div className="w-12 h-px bg-smaa-red-600"></div>
-                <span className="text-smaa-red-400 font-bold tracking-wider uppercase text-sm md:text-base">
+              <div className="inline-flex items-center justify-center lg:justify-start gap-3 mb-6 w-full lg:w-auto">
+                <div className="w-8 md:w-12 h-px bg-smaa-red-600"></div>
+                <span className="text-smaa-red-400 font-bold tracking-wider uppercase text-xs md:text-base">
                   سما التوريد للسيارات
                 </span>
+                <div className="w-8 h-px bg-smaa-red-600 lg:hidden"></div>
               </div>
 
-              <h1 className="text-4xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-[1.5] tracking-tight text-white drop-shadow-sm">
+              <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-extrabold mb-4 md:mb-6 leading-[1.4] md:leading-[1.6] text-white drop-shadow-sm px-2 md:px-0">
                 استورد سيارة أحلامك
                 <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">بمستوى جديد من الفخامة</span>
+                بمستوى جديد من الفخامة
               </h1>
               
-              <p className="text-lg md:text-xl text-gray-300 mb-10 max-w-2xl leading-relaxed font-light">
+              <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-8 md:mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light px-4 md:px-0">
                 نقدم لك حلولاً متكاملة لاستيراد وتوريد وبيع السيارات للأفراد والشركات، مع ضمان الجودة والشفافية التامة في كل خطوة حتى استلام سيارتك.
               </p>
               
-              <div className="flex flex-col sm:flex-row flex-wrap gap-5 mt-8 w-full items-center">
+              <div className="flex flex-col sm:flex-row flex-wrap gap-4 mt-6 md:mt-8 w-full items-center justify-center lg:justify-start px-4 sm:px-0">
                 <Link 
                   href="/contact/individual" 
-                  className="group relative bg-smaa-red-600 hover:bg-smaa-red-500 text-white px-8 py-4 rounded-sm font-bold text-lg transition-all text-center flex items-center justify-center gap-3 overflow-hidden shadow-lg"
+                  className="w-full sm:w-auto group relative bg-smaa-red-600 hover:bg-smaa-red-500 text-white px-6 md:px-8 py-3 md:py-4 rounded-sm font-bold text-base md:text-lg transition-all text-center flex items-center justify-center gap-3 overflow-hidden shadow-lg"
                 >
                   <span className="relative z-10 flex items-center gap-2">
                     <ShieldCheck size={24} />
@@ -72,18 +73,18 @@ export default function HeroSection() {
               </div>
 
               {/* Minimal Stats */}
-              <div className="flex flex-wrap items-center gap-8 md:gap-16 mt-16 pt-8 border-t border-white/10">
-                <div>
-                  <p className="text-3xl font-bold text-white mb-1">100%</p>
-                  <p className="text-sm text-gray-400 font-medium">ضمان الجودة</p>
+              <div className="grid grid-cols-2 sm:flex sm:flex-wrap items-center justify-center lg:justify-start gap-8 md:gap-16 mt-12 md:mt-16 pt-8 border-t border-white/10 text-center sm:text-right">
+                <div className="col-span-1">
+                  <p className="text-2xl md:text-3xl font-bold text-white mb-1">100%</p>
+                  <p className="text-xs md:text-sm text-gray-400 font-medium">ضمان الجودة</p>
                 </div>
-                <div>
-                  <p className="text-3xl font-bold text-white mb-1">+500</p>
-                  <p className="text-sm text-gray-400 font-medium">عميل سعيد</p>
+                <div className="col-span-1">
+                  <p className="text-2xl md:text-3xl font-bold text-white mb-1">+500</p>
+                  <p className="text-xs md:text-sm text-gray-400 font-medium">عميل سعيد</p>
                 </div>
-                <div>
-                  <p className="text-3xl font-bold text-white mb-1">24/7</p>
-                  <p className="text-sm text-gray-400 font-medium">دعم مستمر</p>
+                <div className="col-span-2 sm:col-span-1 mt-2 sm:mt-0">
+                  <p className="text-2xl md:text-3xl font-bold text-white mb-1">24/7</p>
+                  <p className="text-xs md:text-sm text-gray-400 font-medium">دعم مستمر</p>
                 </div>
               </div>
             </motion.div>

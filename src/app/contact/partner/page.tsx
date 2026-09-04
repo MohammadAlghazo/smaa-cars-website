@@ -5,29 +5,30 @@ import { ArrowRight, Handshake, Globe, TrendingUp } from "lucide-react";
 
 export default function PartnerRequestPage() {
   return (
-    <div className="min-h-screen bg-gray-50 pt-28 pb-20">
+    <div className="min-h-screen bg-gray-50 pt-32 pb-24">
       <div className="container mx-auto px-4 md:px-8 max-w-5xl">
-        <div className="flex items-center gap-2 text-sm text-gray-500 mb-8">
-          <Link href="/contact" className="hover:text-smaa-blue-900 transition-colors flex items-center gap-1">
+        <div className="flex items-center gap-2 text-sm text-gray-500 mb-10">
+          <Link href="/contact" className="hover:text-smaa-red-600 transition-colors flex items-center gap-1 font-bold">
             <ArrowRight size={16} />
             التواصل والطلبات
           </Link>
           <span>/</span>
-          <span className="text-smaa-blue-900 font-semibold">شراكة وتعاون</span>
+          <span className="text-smaa-blue-900 font-bold">شراكة وتعاون</span>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-1 space-y-6">
+          <div className="lg:col-span-1 space-y-8">
             <div>
-              <div className="w-14 h-14 bg-amber-500 rounded-2xl flex items-center justify-center mb-4">
-                <Handshake className="text-white" size={28} />
+              <div className="w-14 h-14 bg-amber-500 rounded-sm flex items-center justify-center mb-6 shadow-sm">
+                <Handshake className="text-white" size={28} strokeWidth={1.5} />
               </div>
-              <h1 className="text-3xl font-extrabold text-smaa-blue-900 mb-3">شراكة وتعاون</h1>
-              <p className="text-gray-600 leading-relaxed">
-                نرحب بالتعاون مع الشركات والمؤسسات والجهات العاملة في قطاعات السيارات والتوريد والخدمات المساندة. أرسل لنا مقترحك وسنتواصل معك.
+              <h1 className="text-3xl font-extrabold text-smaa-blue-900 mb-4 tracking-tight">شراكة وتعاون</h1>
+              <p className="text-gray-600 leading-relaxed font-light text-sm">
+                نرحب بالتعاون الاستراتيجي مع الشركات والمؤسسات والجهات العاملة في قطاعات السيارات والتوريد والخدمات المساندة. أرسل لنا مقترحك وسنتواصل معك لبحث سبل التعاون.
               </p>
             </div>
-            <div className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm space-y-4">
+            
+            <div className="bg-white rounded-sm p-8 border border-gray-100 shadow-sm space-y-5">
               <h3 className="font-bold text-smaa-blue-900 text-lg">فرص التعاون</h3>
               {[
                 { icon: Globe, text: "شراكة مع موردين دوليين" },
@@ -35,16 +36,19 @@ export default function PartnerRequestPage() {
                 { icon: Handshake, text: "اتفاقيات حصرية مع معارض السيارات" },
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-3">
-                  <item.icon className="text-amber-500 mt-0.5 flex-shrink-0" size={20} />
-                  <p className="text-sm text-gray-600">{item.text}</p>
+                  <item.icon className="text-amber-500 mt-0.5 flex-shrink-0" size={18} strokeWidth={1.5} />
+                  <p className="text-sm font-light text-gray-600">{item.text}</p>
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="lg:col-span-2 bg-white rounded-3xl p-8 shadow-sm border border-gray-100">
-            <h2 className="text-xl font-bold text-smaa-blue-900 mb-6 pb-4 border-b border-gray-100">بيانات مقترح الشراكة</h2>
-            <ContactFormWrapper type="partner" buttonText="إرسال طلب تعاون">
+          <div className="lg:col-span-2">
+            <ContactFormWrapper type="partner" buttonText="إرسال مقترح الشراكة">
+              <div className="md:col-span-2 mb-4 pb-4 border-b border-gray-100">
+                <h2 className="text-xl font-bold text-smaa-blue-900">بيانات مقترح الشراكة</h2>
+              </div>
+              
               <div>
                 <label className={labelClass}>اسم الشركة أو الجهة <span className="text-smaa-red-600">*</span></label>
                 <input name="companyName" type="text" className={inputClass} required />
@@ -67,7 +71,7 @@ export default function PartnerRequestPage() {
               </div>
               <div>
                 <label className={labelClass}>المدينة والدولة</label>
-                <input name="country" type="text" className={inputClass} placeholder="مثال: الرياض، المملكة العربية السعودية" />
+                <input name="country" type="text" className={inputClass} placeholder="مثال: الرياض، السعودية" />
               </div>
               <div className="md:col-span-2">
                 <label className={labelClass}>نوع التعاون المقترح</label>
@@ -81,7 +85,6 @@ export default function PartnerRequestPage() {
                 <label className={labelClass}>تفاصيل المقترح</label>
                 <textarea name="proposalDetails" rows={5} className={inputClass} placeholder="اشرح لنا فكرة التعاون بالتفصيل..."></textarea>
               </div>
-
             </ContactFormWrapper>
           </div>
         </div>

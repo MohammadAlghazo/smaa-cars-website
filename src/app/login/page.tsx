@@ -85,6 +85,15 @@ export default function LoginPage() {
             {isLoading ? <Loader2 className="animate-spin" /> : "دخول"}
           </button>
         </form>
+
+        <div className="mt-8 text-center border-t border-gray-100 pt-6">
+          <button 
+            onClick={() => router.push('/')}
+            className="text-gray-500 hover:text-smaa-red-600 transition-colors text-sm font-medium inline-flex items-center gap-2"
+          >
+            العودة للموقع الرئيسي
+          </button>
+        </div>
         
       </div>
     </div>
