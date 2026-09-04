@@ -1,0 +1,85 @@
+{
+  "adminUsers": [
+    {
+      "id": "cmtmslcpc0000kxe0flxr5y6y",
+      "createdAt": "2026-09-04T10:09:39.194Z",
+      "updatedAt": "2026-09-04T10:09:39.194Z",
+      "username": "admin",
+      "passwordHash": "$2b$10$aT7urpWDm6Hk0jbMalJJOeRfyIMu0kUe9K4doBzok4hisEEppUEGW"
+    }
+  ],
+  "cars": [
+    {
+      "id": "cmtmasdph0000kx3sifut62p8",
+      "createdAt": "2026-09-04T01:51:14.022Z",
+      "updatedAt": "2026-09-04T01:51:14.022Z",
+      "name": "تويوتا لاند كروزر 2024 VXR",
+      "brand": "تويوتا",
+      "modelYear": "2024",
+      "mileage": "0 كم",
+      "price": "385,000 ريال",
+      "description": "سيارة الدفع الرباعي الأقوى في فئتها، فل كامل مع جميع المواصفات الفاخرة وأنظمة السلامة الحديثة.",
+      "mainImage": "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?q=80&w=1000&auto=format&fit=crop",
+      "images": "[]",
+      "features": "[]",
+      "isAvailable": true
+    },
+    {
+      "id": "cmtmasds70001kx3s1d5f0hpk",
+      "createdAt": "2026-09-04T01:51:14.119Z",
+      "updatedAt": "2026-09-04T01:51:14.119Z",
+      "name": "مرسيدس بنز S-Class 2024",
+      "brand": "مرسيدس",
+      "modelYear": "2024",
+      "mileage": "5,000 كم",
+      "price": "650,000 ريال",
+      "description": "فخامة لا تضاهى مع أحدث التقنيات الألمانية في عالم السيارات السيدان الفارهة.",
+      "mainImage": "https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?q=80&w=1000&auto=format&fit=crop",
+      "images": "[]",
+      "features": "[]",
+      "isAvailable": true
+    },
+    {
+      "id": "cmtmasdu90002kx3skcdq4hyv",
+      "createdAt": "2026-09-04T01:51:14.193Z",
+      "updatedAt": "2026-09-04T01:51:14.193Z",
+      "name": "لكزس LX 600 2024 F-Sport",
+      "brand": "لكزس",
+      "modelYear": "2024",
+      "mileage": "0 كم",
+      "price": "580,000 ريال",
+      "description": "مزيج مثالي بين الفخامة والأداء الرياضي والاعتمادية العالية للسيارة اليابانية العريقة.",
+      "mainImage": "https://images.unsplash.com/photo-1549399542-7e3f8b79c341?q=80&w=1000&auto=format&fit=crop",
+      "images": "[]",
+      "features": "[]",
+      "isAvailable": true
+    }
+  ],
+  "articles": [
+    {
+      "id": "cmtmasdyz0004kx3s4j11tw85",
+      "createdAt": "2026-09-04T01:51:14.364Z",
+      "updatedAt": "2026-09-04T01:51:14.364Z",
+      "title": "دليلك الشامل لاستيراد السيارات من الخارج خطوة بخطوة",
+      "slug": "comprehensive-guide-importing-cars",
+      "excerpt": "تعرف على الإجراءات الجمركية والمواصفات المعتمدة وأهم النصائح لتجنب الأخطاء الشائعة عند استيراد سيارة إلى المملكة.",
+      "content": "تفاصيل المقال ستكون هنا...",
+      "coverImage": "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=1000&auto=format&fit=crop",
+      "author": "أحمد عبدالله",
+      "isPublished": true
+    },
+    {
+      "id": "cmtmase3q0006kx3s9d3neq3u",
+      "createdAt": "2026-09-04T01:51:14.534Z",
+      "updatedAt": "2026-09-04T01:51:14.534Z",
+      "title": "كيف تستفيد الشركات من خدمة توريد الأساطيل التشغيلية؟",
+      "slug": "benefits-corporate-fleet-supply",
+      "excerpt": "دراسة حالة توضح الفوائد المالية والتشغيلية التي تعود على الشركات عند الاعتماد على وكيل توريد متخصص لأساطيلها.",
+      "content": "تفاصيل المقال ستكون هنا...",
+      "coverImage": "https://images.unsplash.com/photo-1560179707-f14e90ef3623?q=80&w=1000&auto=format&fit=crop",
+      "author": "د. خالد السعيد",
+      "isPublished": true
+    }
+  ],
+  "messages": []
+}
