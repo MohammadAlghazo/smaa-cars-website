@@ -4,7 +4,11 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import "./globals.css";
 
-const alexandria = Alexandria({ subsets: ["arabic", "latin"] });
+const alexandria = Alexandria({ 
+  subsets: ["arabic", "latin"],
+  display: 'swap',
+  variable: '--font-alexandria',
+});
 
 const siteTitle = "سما التوريد لخدمات السيارات | SMAA CARS";
 const siteDesc = "حلول متكاملة لاستيراد وتوريد وبيع السيارات للأفراد والشركات داخل المملكة العربية السعودية. نوفر أفضل الخيارات بأسعار تنافسية وخدمات ما بعد البيع المميزة.";
@@ -52,7 +56,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ar" dir="rtl" className="scroll-smooth overflow-x-hidden">
-      <body className={`${alexandria.className} bg-white text-smaa-gray-900 antialiased overflow-x-hidden min-h-screen flex flex-col`}>
+      <body className={`${alexandria.variable} font-sans bg-white text-smaa-gray-900 antialiased overflow-x-hidden min-h-screen flex flex-col`}>
         <NextTopLoader
           color="#dc2626"
           initialPosition={0.08}
