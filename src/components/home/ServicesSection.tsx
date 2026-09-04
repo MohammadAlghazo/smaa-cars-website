@@ -55,7 +55,7 @@ export default function ServicesSection() {
           </div>
         </div>
 
-        <div className="flex overflow-x-auto snap-x snap-mandatory pb-8 -mx-4 px-4 gap-4 md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 md:overflow-visible md:snap-none md:mx-0 md:px-0 md:pb-0 hide-scrollbar">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {services.map((service, idx) => {
             const Icon = service.icon;
             return (
@@ -65,15 +65,15 @@ export default function ServicesSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: idx * 0.1 }}
-                className="min-w-[85vw] sm:min-w-[320px] md:min-w-0 snap-start shrink-0 bg-gray-50 border border-gray-100 rounded-sm p-8 hover:bg-smaa-blue-900 hover:border-smaa-blue-900 transition-all duration-300 group flex flex-col h-full"
+                className="bg-gray-50 border border-gray-100 rounded-xl p-6 md:p-8 hover:bg-smaa-blue-900 hover:border-smaa-blue-900 transition-all duration-300 group flex flex-col h-full"
               >
-                <div className="w-12 h-12 flex items-center justify-center mb-6 text-smaa-red-600 group-hover:text-white transition-colors duration-300">
-                  <Icon size={32} strokeWidth={1.5}/>
+                <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center mb-4 md:mb-6 text-smaa-red-600 group-hover:text-white transition-colors duration-300">
+                  <Icon className="w-8 h-8 md:w-10 md:h-10" strokeWidth={1.5}/>
                 </div>
-                <h3 className="text-2xl font-bold text-smaa-blue-900 mb-4 group-hover:text-white transition-colors duration-300">
+                <h3 className="text-xl md:text-2xl font-bold text-smaa-blue-900 mb-3 md:mb-4 group-hover:text-white transition-colors duration-300">
                   {service.title}
                 </h3>
-                <p className="text-gray-600 leading-relaxed mb-8 flex-grow text-sm group-hover:text-gray-300 transition-colors duration-300 font-light">
+                <p className="text-gray-600 leading-relaxed mb-6 md:mb-8 flex-grow text-sm group-hover:text-gray-300 transition-colors duration-300 font-light">
                   {service.desc}
                 </p>
                 <Link 

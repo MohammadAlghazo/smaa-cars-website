@@ -65,7 +65,7 @@ export default function FeaturesGrid() {
           </motion.div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 divide-y md:divide-y-0 md:divide-x md:divide-x-reverse border border-gray-100 rounded-sm overflow-hidden shadow-sm">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 md:gap-0 md:divide-y-0 md:divide-x md:divide-x-reverse border-0 md:border md:border-gray-100 rounded-sm md:overflow-hidden md:shadow-sm">
           {features.map((feat, idx) => (
             <motion.div 
               key={idx}
@@ -73,13 +73,13 @@ export default function FeaturesGrid() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              className="bg-white p-10 hover:bg-gray-50 transition-colors duration-300 group"
+              className="bg-white p-4 md:p-10 border border-gray-100 md:border-0 rounded-xl md:rounded-none hover:bg-gray-50 transition-colors duration-300 group flex flex-col items-center text-center md:items-start md:text-right"
             >
-              <div className="w-14 h-14 bg-smaa-red-50 rounded-lg flex items-center justify-center mb-8 group-hover:scale-110 group-hover:bg-smaa-red-100 transition-all duration-300">
+              <div className="w-12 h-12 md:w-14 md:h-14 bg-smaa-red-50 rounded-lg flex items-center justify-center mb-4 md:mb-8 group-hover:scale-110 group-hover:bg-smaa-red-100 transition-all duration-300 [&>svg]:w-6 [&>svg]:h-6 md:[&>svg]:w-7 md:[&>svg]:h-7">
                 {feat.icon}
               </div>
-              <h3 className="text-xl font-bold text-smaa-blue-900 mb-4">{feat.title}</h3>
-              <p className="text-gray-600 leading-relaxed text-sm">
+              <h3 className="text-sm md:text-xl font-bold text-smaa-blue-900 mb-2 md:mb-4">{feat.title}</h3>
+              <p className="text-gray-500 md:text-gray-600 leading-relaxed text-xs md:text-sm">
                 {feat.desc}
               </p>
             </motion.div>

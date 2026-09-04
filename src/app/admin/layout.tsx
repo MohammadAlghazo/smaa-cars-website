@@ -17,6 +17,8 @@ const navItems = [
   { name: "الإعدادات", href: "/admin/settings", icon: <Settings size={20} /> },
 ];
 
+import NextTopLoader from 'nextjs-toploader';
+
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
   const pathname = usePathname();
@@ -30,6 +32,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
   return (
     <div className="min-h-screen bg-gray-50 flex" dir="rtl">
+      <NextTopLoader color="#dc2626" showSpinner={false} />
       
       {/* Mobile Sidebar Overlay */}
       {isSidebarOpen && (

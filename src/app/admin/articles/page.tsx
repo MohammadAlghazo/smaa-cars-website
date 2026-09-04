@@ -2,6 +2,7 @@ import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import Image from "next/image";
 import { FileText, Plus, Edit } from "lucide-react";
+import DeleteRecordButton from "@/components/admin/DeleteRecordButton";
 
 export const dynamic = "force-dynamic";
 
@@ -72,7 +73,7 @@ export default async function AdminArticlesPage() {
                         <Link href={`/admin/articles/${article.id}/edit`} className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors">
                           <Edit size={18} />
                         </Link>
-                        {/* Note: Delete logic should ideally be a client component button. For MVP, we'll keep it simple */}
+                        <DeleteRecordButton endpoint={`/api/articles/${article.id}`} itemName="هذا المقال" />
                       </div>
                     </td>
                   </tr>

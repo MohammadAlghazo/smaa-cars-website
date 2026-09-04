@@ -7,13 +7,13 @@ import { ShieldCheck, ChevronLeft } from "lucide-react";
 export default function HeroSection() {
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      
+
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
-        <Image 
-          src="/hero-bg.png" 
-          alt="Premium Luxury Cars" 
-          fill 
+        <Image
+          src="/hero-bg.png"
+          alt="Premium Luxury Cars"
+          fill
           className="object-cover object-center scale-105"
           priority
           unoptimized
@@ -25,14 +25,10 @@ export default function HeroSection() {
 
       <div className="container mx-auto px-6 md:px-8 z-20 relative pt-24 pb-12">
         <div className="flex flex-col lg:flex-row items-center">
-          
+
           {/* Text Content */}
           <div className="w-full lg:w-[65%] text-white text-center lg:text-right">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1, ease: "easeOut" }}
-            >
+            <div className="animate-[fadeIn_1s_ease-out]">
               <div className="inline-flex items-center justify-center lg:justify-start gap-3 mb-6 w-full lg:w-auto">
                 <div className="w-8 md:w-12 h-px bg-smaa-red-600"></div>
                 <span className="text-smaa-red-400 font-bold tracking-wider uppercase text-xs md:text-base">
@@ -46,14 +42,14 @@ export default function HeroSection() {
                 <br />
                 بمستوى جديد من الفخامة
               </h1>
-              
+
               <p className="text-base sm:text-lg md:text-xl text-gray-300 mb-8 md:mb-10 max-w-2xl mx-auto lg:mx-0 leading-relaxed font-light px-4 md:px-0">
                 نقدم لك حلولاً متكاملة لاستيراد وتوريد وبيع السيارات للأفراد والشركات، مع ضمان الجودة والشفافية التامة في كل خطوة حتى استلام سيارتك.
               </p>
-              
+
               <div className="flex flex-col sm:flex-row flex-wrap gap-4 mt-6 md:mt-8 w-full items-center justify-center lg:justify-start px-4 sm:px-0">
-                <Link 
-                  href="/contact/individual" 
+                <Link
+                  href="/contact/individual"
                   className="w-full sm:w-auto group relative bg-smaa-red-600 hover:bg-smaa-red-500 text-white px-6 md:px-8 py-3 md:py-4 rounded-sm font-bold text-base md:text-lg transition-all text-center flex items-center justify-center gap-3 overflow-hidden shadow-lg"
                 >
                   <span className="relative z-10 flex items-center gap-2">
@@ -62,9 +58,9 @@ export default function HeroSection() {
                   </span>
                   <div className="absolute inset-0 h-full w-0 bg-white/20 transition-all duration-300 ease-out group-hover:w-full z-0"></div>
                 </Link>
-                
-                <Link 
-                  href="/contact/corporate" 
+
+                <Link
+                  href="/contact/corporate"
                   className="group text-white px-8 py-4 font-bold text-lg transition-all text-center flex items-center justify-center gap-2 hover:text-smaa-red-400"
                 >
                   اطلب عرضاً للشركات
@@ -80,14 +76,14 @@ export default function HeroSection() {
                 </div>
                 <div className="col-span-1">
                   <p className="text-2xl md:text-3xl font-bold text-white mb-1">+500</p>
-                  <p className="text-xs md:text-sm text-gray-400 font-medium">عميل سعيد</p>
+                  <p className="text-xs md:text-sm text-gray-400 font-medium">عميل</p>
                 </div>
                 <div className="col-span-2 sm:col-span-1 mt-2 sm:mt-0">
                   <p className="text-2xl md:text-3xl font-bold text-white mb-1">24/7</p>
                   <p className="text-xs md:text-sm text-gray-400 font-medium">دعم مستمر</p>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
 
         </div>

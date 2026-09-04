@@ -2,6 +2,7 @@ import { prisma } from "@/lib/prisma";
 import Link from "next/link";
 import Image from "next/image";
 import { Car, Plus, Edit } from "lucide-react";
+import DeleteRecordButton from "@/components/admin/DeleteRecordButton";
 
 export const dynamic = "force-dynamic";
 
@@ -67,9 +68,10 @@ export default async function AdminCarsPage() {
                     </td>
                     <td className="p-4">
                       <div className="flex items-center justify-center gap-2">
-                        <Link href={`/admin/cars/${car.id}/edit`} className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors">
+                        <Link href={`/admin/cars/${car.id}/edit`} className="p-2 text-blue-600 hover:bg-blue-50 rounded-lg transition-colors" title="تعديل">
                           <Edit size={18} />
                         </Link>
+                        <DeleteRecordButton endpoint={`/api/cars/${car.id}`} itemName="هذه السيارة" />
                       </div>
                     </td>
                   </tr>

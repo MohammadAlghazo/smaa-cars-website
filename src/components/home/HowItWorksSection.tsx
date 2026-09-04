@@ -38,7 +38,7 @@ export default function HowItWorksSection() {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-0 border border-gray-200 bg-white rounded-sm overflow-hidden shadow-sm">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-[1px] md:bg-gray-200 md:border md:border-gray-200 rounded-sm overflow-hidden">
           {steps.map((step, idx) => (
             <motion.div 
               key={idx}
@@ -46,19 +46,19 @@ export default function HowItWorksSection() {
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1 }}
-              className={`p-10 relative group hover:bg-smaa-blue-900 transition-colors duration-500 ${
-                idx !== steps.length - 1 ? 'border-b md:border-b-0 md:border-l border-gray-100' : ''
-              }`}
+              className="flex md:block items-center md:p-10 p-4 relative group hover:bg-smaa-blue-900 bg-white transition-colors duration-500 border border-gray-100 md:border-0 rounded-xl md:rounded-none shadow-sm md:shadow-none gap-4"
             >
-              <div className="text-5xl font-black text-gray-100 group-hover:text-white/10 transition-colors duration-500 mb-8 font-sans tracking-tighter select-none">
+              <div className="text-3xl md:text-5xl font-black text-smaa-blue-100 group-hover:text-white/10 transition-colors duration-500 md:mb-8 font-sans tracking-tighter select-none shrink-0 w-12 md:w-auto text-center">
                 {step.num}
               </div>
-              <h3 className="text-xl font-bold text-smaa-blue-900 group-hover:text-white mb-4 transition-colors duration-500">
-                {step.title}
-              </h3>
-              <p className="text-gray-500 group-hover:text-gray-300 leading-relaxed text-sm font-light transition-colors duration-500">
-                {step.desc}
-              </p>
+              <div>
+                <h3 className="text-base md:text-xl font-bold text-smaa-blue-900 group-hover:text-white mb-1 md:mb-4 transition-colors duration-500">
+                  {step.title}
+                </h3>
+                <p className="text-gray-500 group-hover:text-gray-300 leading-relaxed text-xs md:text-sm font-light transition-colors duration-500">
+                  {step.desc}
+                </p>
+              </div>
             </motion.div>
           ))}
         </div>

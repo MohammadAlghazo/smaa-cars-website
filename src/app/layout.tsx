@@ -43,6 +43,8 @@ export const metadata: Metadata = {
   },
 };
 
+import NextTopLoader from 'nextjs-toploader';
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -51,6 +53,17 @@ export default function RootLayout({
   return (
     <html lang="ar" dir="rtl" className="scroll-smooth overflow-x-hidden">
       <body className={`${alexandria.className} bg-white text-smaa-gray-900 antialiased overflow-x-hidden min-h-screen flex flex-col`}>
+        <NextTopLoader
+          color="#dc2626"
+          initialPosition={0.08}
+          crawlSpeed={200}
+          height={3}
+          crawl={true}
+          showSpinner={false}
+          easing="ease"
+          speed={200}
+          shadow="0 0 10px #dc2626,0 0 5px #dc2626"
+        />
         <Navbar />
         <main className="flex-grow">{children}</main>
         <Footer />

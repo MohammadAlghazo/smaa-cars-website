@@ -63,29 +63,29 @@ export default function AboutSection() {
               transition={{ duration: 0.6, delay: 0.2 }}
               className="relative z-10 w-full"
             >
-              <div className="grid grid-cols-2 gap-6">
+              <div className="grid grid-cols-2 gap-4 md:gap-6">
                 {/* Stat Box 1 */}
-                <div className="flex flex-col justify-center bg-white/10 backdrop-blur-md p-8 rounded-sm border border-white/20 hover:bg-white/15 transition-colors aspect-square text-center">
-                  <p className="text-4xl font-extrabold text-white mb-2">+15</p>
-                  <p className="text-smaa-red-400 font-bold text-sm">دولة نستورد منها</p>
+                <div className="flex flex-col justify-center bg-white/10 backdrop-blur-md p-4 sm:p-6 md:p-8 rounded-sm border border-white/20 hover:bg-white/15 transition-colors aspect-[4/3] md:aspect-square text-center">
+                  <p className="text-3xl sm:text-4xl font-extrabold text-white mb-2">+15</p>
+                  <p className="text-smaa-red-400 font-bold text-xs sm:text-sm">دولة نستورد منها</p>
                 </div>
                 
                 {/* Stat Box 2 */}
-                <div className="flex flex-col justify-center bg-white/10 backdrop-blur-md p-8 rounded-sm border border-white/20 hover:bg-white/15 transition-colors aspect-square text-center">
-                  <p className="text-4xl font-extrabold text-white mb-2">100%</p>
-                  <p className="text-smaa-red-400 font-bold text-sm">شفافية في التسعير</p>
+                <div className="flex flex-col justify-center bg-white/10 backdrop-blur-md p-4 sm:p-6 md:p-8 rounded-sm border border-white/20 hover:bg-white/15 transition-colors aspect-[4/3] md:aspect-square text-center">
+                  <p className="text-3xl sm:text-4xl font-extrabold text-white mb-2">100%</p>
+                  <p className="text-smaa-red-400 font-bold text-xs sm:text-sm">شفافية في التسعير</p>
                 </div>
 
                 {/* Stat Box 3 */}
-                <div className="flex flex-col justify-center bg-white/10 backdrop-blur-md p-8 rounded-sm border border-white/20 hover:bg-white/15 transition-colors aspect-square text-center">
-                  <p className="text-4xl font-extrabold text-white mb-2">+500</p>
-                  <p className="text-smaa-red-400 font-bold text-sm">سيارة استوردناها</p>
+                <div className="flex flex-col justify-center bg-white/10 backdrop-blur-md p-4 sm:p-6 md:p-8 rounded-sm border border-white/20 hover:bg-white/15 transition-colors aspect-[4/3] md:aspect-square text-center">
+                  <p className="text-3xl sm:text-4xl font-extrabold text-white mb-2">+500</p>
+                  <p className="text-smaa-red-400 font-bold text-xs sm:text-sm">سيارة استوردناها</p>
                 </div>
 
                 {/* Stat Box 4 */}
-                <div className="flex flex-col justify-center bg-white/10 backdrop-blur-md p-8 rounded-sm border border-white/20 hover:bg-white/15 transition-colors aspect-square text-center">
-                  <p className="text-4xl font-extrabold text-white mb-2">24/7</p>
-                  <p className="text-smaa-red-400 font-bold text-sm">دعم فني متواصل</p>
+                <div className="flex flex-col justify-center bg-white/10 backdrop-blur-md p-4 sm:p-6 md:p-8 rounded-sm border border-white/20 hover:bg-white/15 transition-colors aspect-[4/3] md:aspect-square text-center">
+                  <p className="text-3xl sm:text-4xl font-extrabold text-white mb-2">24/7</p>
+                  <p className="text-smaa-red-400 font-bold text-xs sm:text-sm">دعم فني متواصل</p>
                 </div>
               </div>
             </motion.div>
