@@ -1,14 +1,7 @@
 import type { Metadata } from "next";
-import { Alexandria } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import "./globals.css";
-
-const alexandria = Alexandria({ 
-  subsets: ["arabic", "latin"],
-  display: 'swap',
-  variable: '--font-alexandria',
-});
 
 const siteTitle = "سما التوريد لخدمات السيارات | SMAA CARS";
 const siteDesc = "حلول متكاملة لاستيراد وتوريد وبيع السيارات للأفراد والشركات داخل المملكة العربية السعودية. نوفر أفضل الخيارات بأسعار تنافسية وخدمات ما بعد البيع المميزة.";
@@ -56,7 +49,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ar" dir="rtl" className="scroll-smooth overflow-x-hidden">
-      <body className={`${alexandria.variable} font-sans bg-white text-smaa-gray-900 antialiased overflow-x-hidden min-h-screen flex flex-col`}>
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+      </head>
+      <body className={`font-sans bg-white text-smaa-gray-900 antialiased overflow-x-hidden min-h-screen flex flex-col`}>
         <NextTopLoader
           color="#dc2626"
           initialPosition={0.08}
