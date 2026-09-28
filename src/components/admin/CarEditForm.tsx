@@ -7,7 +7,7 @@ import { Loader2, ArrowRight, Save, Image as ImageIcon } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function CarEditForm({ car }: { car: { id: string, name: string, brand: string, modelYear: string, mileage: string, price: string | null, description: string, mainImage: string, isAvailable: boolean } }) {
+export default function CarEditForm({ car }: { car: { id: string, name: string, brand: string, modelYear: string, mileage: string, price: string | null, description: string, mainImage: string, isAvailable: boolean, images?: string, features?: string } }) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
@@ -44,15 +44,33 @@ export default function CarEditForm({ car }: { car: { id: string, name: string, 
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
     setError("");
+
+    if (!modelYear.trim() || !/^\d{4}$/.test(modelYear.trim())) {
+      setError("سنة الصنع يجب أن تتكون من 4 أرقام (مثال: 2024).");
+      return;
+    }
+
+    if (!mainImage.trim()) {
+      setError("يرجى رفع صورة للسيارة أو إدخال رابط الصورة أولاً.");
+      return;
+    }
+
+    setIsLoading(true);
+
+    let parsedImages = [];
+    let parsedFeatures = [];
+    try {
+      if (car.images) parsedImages = JSON.parse(car.images);
+      if (car.features) parsedFeatures = JSON.parse(car.features);
+    } catch {}
 
     try {
       const res = await fetch(`/api/cars/${car.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          name, brand, modelYear, mileage, price, description, mainImage, isAvailable, images: [], features: []
+          name, brand, modelYear, mileage, price, description, mainImage, isAvailable, images: parsedImages, features: parsedFeatures
         }),
       });
 

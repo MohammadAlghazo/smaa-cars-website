@@ -14,6 +14,7 @@ export default function NewArticlePage() {
   
   const [title, setTitle] = useState("");
   const [slug, setSlug] = useState("");
+  const [author, setAuthor] = useState("SMAA CARS");
   const [excerpt, setExcerpt] = useState("");
   const [content, setContent] = useState("");
   const [coverImage, setCoverImage] = useState("");
@@ -42,15 +43,26 @@ export default function NewArticlePage() {
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
     setError("");
+
+    if (!coverImage.trim()) {
+      setError("يرجى رفع أو إضافة صورة غلاف للمقال أولاً.");
+      return;
+    }
+
+    if (!content.trim()) {
+      setError("محتوى المقال مطلوب.");
+      return;
+    }
+
+    setIsLoading(true);
 
     try {
       const res = await fetch("/api/articles", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          title, slug, excerpt, content, coverImage, isPublished
+          title, slug, author, excerpt, content, coverImage, isPublished
         }),
       });
 
@@ -117,7 +129,19 @@ export default function NewArticlePage() {
                 required 
                 placeholder="example-article-slug"
               />
-              <p className="text-xs text-gray-500 mt-1">الرابط الإنجليزي الذي سيظهر في شريط العنوان.</p>
+              <p className="text-xs text-gray-500 mt-1">الرابط بالإنجليزية أو العربية الذي سيظهر في شريط العنوان.</p>
+            </div>
+
+            <div className="mb-6">
+              <label className={labelClass}>الكاتب <span className="text-smaa-red-600">*</span></label>
+              <input 
+                type="text" 
+                value={author}
+                onChange={(e) => setAuthor(e.target.value)}
+                className={inputClass} 
+                required 
+                placeholder="مثال: سما التوريد أو اسم الكاتب"
+              />
             </div>
 
             <div>

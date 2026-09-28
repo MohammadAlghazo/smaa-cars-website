@@ -1,7 +1,7 @@
 import { z } from "zod";
 
 const imageValidator = z.string().refine((val) => val.startsWith("/") || val.startsWith("http"), {
-  message: "رابط الصورة غير صالح",
+  message: "يرجى تحديد أو رفع صورة صحيحة",
 });
 
 export const carSchema = z.object({
@@ -21,12 +21,12 @@ export const articleSchema = z.object({
   title: z.string().min(1, "العنوان مطلوب").max(200).trim(),
   slug: z
     .string()
-    .min(1, "الـ slug مطلوب")
+    .min(1, "رابط المقال (slug) مطلوب")
     .max(100)
-    .regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, "الـ slug يجب أن يحتوي على حروف إنجليزية صغيرة وأرقام وشرطات فقط"),
+    .regex(/^[a-zA-Z0-9\u0600-\u06FF]+(?:-[a-zA-Z0-9\u0600-\u06FF]+)*$/, "الرابط يجب أن يحتوي على أحرف وأرقام وشرطات فقط"),
   excerpt: z.string().min(1, "الملخص مطلوب").max(500).trim(),
   content: z.string().min(1, "المحتوى مطلوب"),
   coverImage: imageValidator,
-  author: z.string().default("SMAA CARS"),
+  author: z.string().min(1, "اسم الكاتب مطلوب").max(100).default("SMAA CARS"),
   isPublished: z.boolean().default(true),
 });

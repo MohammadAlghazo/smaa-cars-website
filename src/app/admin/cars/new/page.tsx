@@ -44,8 +44,19 @@ export default function NewCarPage() {
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
     setError("");
+
+    if (!modelYear.trim() || !/^\d{4}$/.test(modelYear.trim())) {
+      setError("سنة الصنع يجب أن تتكون من 4 أرقام (مثال: 2024).");
+      return;
+    }
+
+    if (!mainImage.trim()) {
+      setError("يرجى رفع صورة للسيارة أو إدخال رابط الصورة أولاً.");
+      return;
+    }
+
+    setIsLoading(true);
 
     try {
       const res = await fetch("/api/cars", {

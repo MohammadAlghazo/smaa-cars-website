@@ -18,7 +18,8 @@ export default function DeleteRecordButton({ endpoint, itemName }: { endpoint: s
       if (res.ok) {
         router.refresh();
       } else {
-        alert("حدث خطأ أثناء الحذف");
+        const data = await res.json().catch(() => ({}));
+        alert(data.error || "حدث خطأ أثناء الحذف");
       }
     } catch {
       alert("حدث خطأ أثناء الحذف");

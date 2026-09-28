@@ -22,8 +22,8 @@ export default function SettingsPage() {
       return;
     }
 
-    if (newPassword.length < 6) {
-      setError("يجب أن تتكون كلمة المرور من 6 أحرف على الأقل.");
+    if (newPassword.length < 8) {
+      setError("يجب أن تتكون كلمة المرور من 8 أحرف على الأقل.");
       return;
     }
 

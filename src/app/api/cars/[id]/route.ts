@@ -45,8 +45,10 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
     // ✅ Validate input
     const parsed = carSchema.safeParse(body);
     if (!parsed.success) {
+      const fieldErrors = parsed.error.flatten().fieldErrors;
+      const firstError = Object.values(fieldErrors).flat()[0] || "بيانات غير صالحة";
       return NextResponse.json(
-        { error: "بيانات غير صالحة", details: parsed.error.flatten().fieldErrors },
+        { error: firstError, details: fieldErrors },
         { status: 400 }
       );
     }

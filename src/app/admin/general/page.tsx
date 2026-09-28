@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import AdminPagination from "@/components/admin/AdminPagination";
 import AdminSearch from "@/components/admin/AdminSearch";
+import DeleteRecordButton from "@/components/admin/DeleteRecordButton";
 import { MessageCircle } from "lucide-react";
 
 export const dynamic = "force-dynamic";
@@ -56,12 +57,13 @@ export default async function GeneralPage({
                 <th className="p-4 font-bold whitespace-nowrap">رقم الجوال</th>
                 <th className="p-4 font-bold whitespace-nowrap">البريد الإلكتروني</th>
                 <th className="p-4 font-bold whitespace-nowrap">نوع الاستفسار</th>
+                <th className="p-4 font-bold whitespace-nowrap text-center">إجراءات</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
               {requests.length === 0 ? (
                 <tr>
-                  <td colSpan={5} className="p-12 text-center text-gray-500 font-light">لا يوجد طلبات تطابق بحثك حالياً</td>
+                  <td colSpan={6} className="p-12 text-center text-gray-500 font-light">لا يوجد طلبات تطابق بحثك حالياً</td>
                 </tr>
               ) : (
                 requests.map((req) => (
@@ -76,6 +78,9 @@ export default async function GeneralPage({
                       <span className="bg-green-50 text-green-700 px-3 py-1.5 rounded-sm text-xs font-bold">
                         {req.collaborationType || "غير محدد"}
                       </span>
+                    </td>
+                    <td className="p-4 text-center">
+                      <DeleteRecordButton endpoint={`/api/contact/${req.id}`} itemName="رسالة التواصل" />
                     </td>
                   </tr>
                 ))

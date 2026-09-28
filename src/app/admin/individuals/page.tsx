@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import AdminPagination from "@/components/admin/AdminPagination";
 import AdminSearch from "@/components/admin/AdminSearch";
+import DeleteRecordButton from "@/components/admin/DeleteRecordButton";
 import { User } from "lucide-react";
 
 export const dynamic = "force-dynamic";
@@ -57,12 +58,13 @@ export default async function IndividualsPage({
                 <th className="p-4 font-bold whitespace-nowrap">نوع الطلب</th>
                 <th className="p-4 font-bold whitespace-nowrap">السيارة</th>
                 <th className="p-4 font-bold whitespace-nowrap">الميزانية</th>
+                <th className="p-4 font-bold whitespace-nowrap text-center">إجراءات</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
               {requests.length === 0 ? (
                 <tr>
-                  <td colSpan={6} className="p-12 text-center text-gray-500 font-light">لا يوجد طلبات تطابق بحثك حالياً</td>
+                  <td colSpan={7} className="p-12 text-center text-gray-500 font-light">لا يوجد طلبات تطابق بحثك حالياً</td>
                 </tr>
               ) : (
                 requests.map((req) => (
@@ -82,6 +84,9 @@ export default async function IndividualsPage({
                       <span className="text-xs text-gray-400">{req.carColor}</span>
                     </td>
                     <td className="p-4 font-bold text-smaa-red-600 whitespace-nowrap">{req.budget || "---"}</td>
+                    <td className="p-4 text-center">
+                      <DeleteRecordButton endpoint={`/api/contact/${req.id}`} itemName="هذا الطلب" />
+                    </td>
                   </tr>
                 ))
               )}

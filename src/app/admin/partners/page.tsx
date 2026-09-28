@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import AdminPagination from "@/components/admin/AdminPagination";
 import AdminSearch from "@/components/admin/AdminSearch";
+import DeleteRecordButton from "@/components/admin/DeleteRecordButton";
 import { Handshake } from "lucide-react";
 
 export const dynamic = "force-dynamic";
@@ -57,12 +58,13 @@ export default async function PartnersPage({
                 <th className="p-4 font-bold whitespace-nowrap">مقدم الطلب</th>
                 <th className="p-4 font-bold whitespace-nowrap">المدينة / الدولة</th>
                 <th className="p-4 font-bold whitespace-nowrap">نوع التعاون</th>
+                <th className="p-4 font-bold whitespace-nowrap text-center">إجراءات</th>
               </tr>
             </thead>
             <tbody className="divide-y divide-gray-100">
               {requests.length === 0 ? (
                 <tr>
-                  <td colSpan={5} className="p-12 text-center text-gray-500 font-light">لا يوجد طلبات تطابق بحثك حالياً</td>
+                  <td colSpan={6} className="p-12 text-center text-gray-500 font-light">لا يوجد طلبات تطابق بحثك حالياً</td>
                 </tr>
               ) : (
                 requests.map((req) => (
@@ -80,6 +82,9 @@ export default async function PartnersPage({
                       <span className="bg-amber-50 text-amber-700 px-3 py-1.5 rounded-sm text-xs font-bold">
                         {req.collaborationType || "غير محدد"}
                       </span>
+                    </td>
+                    <td className="p-4 text-center">
+                      <DeleteRecordButton endpoint={`/api/contact/${req.id}`} itemName="طلب الشراكة" />
                     </td>
                   </tr>
                 ))

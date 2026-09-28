@@ -14,6 +14,7 @@ export default function ArticleEditForm({ article }: { article: any }) {
   
   const [title, setTitle] = useState(article.title);
   const [slug, setSlug] = useState(article.slug);
+  const [author, setAuthor] = useState(article.author || "SMAA CARS");
   const [excerpt, setExcerpt] = useState(article.excerpt);
   const [content, setContent] = useState(article.content);
   const [coverImage, setCoverImage] = useState(article.coverImage);
@@ -42,15 +43,26 @@ export default function ArticleEditForm({ article }: { article: any }) {
 
   const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsLoading(true);
     setError("");
+
+    if (!coverImage.trim()) {
+      setError("يرجى رفع أو إضافة صورة غلاف للمقال أولاً.");
+      return;
+    }
+
+    if (!content.trim()) {
+      setError("محتوى المقال مطلوب.");
+      return;
+    }
+
+    setIsLoading(true);
 
     try {
       const res = await fetch(`/api/articles/${article.id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          title, slug, excerpt, content, coverImage, isPublished
+          title, slug, author, excerpt, content, coverImage, isPublished
         }),
       });
 
@@ -115,7 +127,19 @@ export default function ArticleEditForm({ article }: { article: any }) {
                 className={`${inputClass} text-left font-mono`} 
                 required 
               />
-              <p className="text-xs text-gray-500 mt-1">الرابط الإنجليزي الذي سيظهر في شريط العنوان.</p>
+              <p className="text-xs text-gray-500 mt-1">الرابط بالإنجليزية أو العربية الذي سيظهر في شريط العنوان.</p>
+            </div>
+
+            <div className="mb-6">
+              <label className={labelClass}>الكاتب <span className="text-smaa-red-600">*</span></label>
+              <input 
+                type="text" 
+                value={author}
+                onChange={(e) => setAuthor(e.target.value)}
+                className={inputClass} 
+                required 
+                placeholder="اسم الكاتب"
+              />
             </div>
 
             <div>
