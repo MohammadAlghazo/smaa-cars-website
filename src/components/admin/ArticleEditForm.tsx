@@ -7,7 +7,18 @@ import { Loader2, ArrowRight, Save, Image as ImageIcon } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function ArticleEditForm({ article }: { article: any }) {
+interface ArticleData {
+  id: string;
+  title: string;
+  slug: string;
+  excerpt: string;
+  content: string;
+  coverImage: string;
+  author?: string;
+  isPublished: boolean;
+}
+
+export default function ArticleEditForm({ article }: { article: ArticleData }) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");

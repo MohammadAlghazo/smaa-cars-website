@@ -7,7 +7,21 @@ import { Loader2, ArrowRight, Save, Image as ImageIcon } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
-export default function CarEditForm({ car }: { car: { id: string, name: string, brand: string, modelYear: string, mileage: string, price: string | null, description: string, mainImage: string, isAvailable: boolean, images?: string, features?: string } }) {
+interface CarData {
+  id: string;
+  name: string;
+  brand: string;
+  modelYear: string;
+  mileage: string;
+  price?: string | null;
+  description: string;
+  mainImage: string;
+  images?: string;
+  features?: string;
+  isAvailable: boolean;
+}
+
+export default function CarEditForm({ car }: { car: CarData }) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
